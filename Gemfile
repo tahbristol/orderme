@@ -41,6 +41,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'webdrivers', '~> 3.0'
+  gem 'database_cleaner'
 end
 
 group :development do
