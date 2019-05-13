@@ -1,6 +1,9 @@
 class Order < ApplicationRecord
   enum status: [:requested, :pending, :placed, :recieved_and_invoiced]
   
+  belongs_to :requestor, class_name: :User, foreign_key: :user_id
+  belongs_to :purchaser, class_name: :User, foreign_key: :user_id
+  
   has_many :order_users
   has_many :users, through: :order_users
   has_many :line_items, dependent: :destroy

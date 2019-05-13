@@ -14,7 +14,7 @@
         <td><%= order.created_at %></td>
         <td><%= order.line_items.count %></td>
         <td><%= order.total_price %></td>
-        <td><%= order.requested_by %></td>
+        <td><%= order.requestor %></td>
       <% end %>
     </tr>
   </table>
@@ -22,3 +22,5 @@
   <h4>You have no orders</h4>
 <% end %>
 <%= link_to 'Create Order', new_order_path %>
+<br />
+<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
