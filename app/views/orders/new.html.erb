@@ -16,6 +16,7 @@
     <%= item.label :vendor %>
     <%= item.text_field :vendor %>
   <% end %>
+  <%= f.hidden_field :requestor_id, value: current_user.id %>
     <br />
   <%= f.submit "Submit Order" %>
 <% end %>

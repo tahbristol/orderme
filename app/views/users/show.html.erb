@@ -14,7 +14,7 @@
         <td><%= order.created_at %></td>
         <td><%= order.line_items.count %></td>
         <td><%= order.total_price %></td>
-        <td><%= order.requestor %></td>
+        <td><%= order.requestor.name%></td>
       <% end %>
     </tr>
   </table>

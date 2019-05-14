@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
   
   def order_params
     params.require(:order).permit(
+      :requestor_id,
       line_items_attributes: [:id, :name, :quantity, :catalogue_number, :price, :vendor, :_destroy]
     )
   end
