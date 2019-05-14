@@ -2,22 +2,18 @@
 
 <% if !@user.orders.empty? %>
   <h4>Submitted Orders</h4>
-  <table>
-    <tr>
-      <th>Date Requested</th>
-      <th>Number of items</th>
-      <th>Total Price</th>
-      <th>Requested By</th> 
-    </tr>
-    <tr>
-      <% @user.orders.each do |order| %>
-        <td><%= order.created_at %></td>
-        <td><%= order.line_items.count %></td>
-        <td><%= order.total_price %></td>
-        <td><%= order.requestor.name%></td>
-      <% end %>
-    </tr>
-  </table>
+  <div class="grid-container">
+    <div class="grid-item">Date Requested</div>
+    <div class="grid-item">Number of Items</div>
+    <div class="grid-item">Total Price</div>
+    <div class="grid-item">Requested By</div>
+    <% @user.orders.each do |order| %>
+      <div class="grid-item"><%= order.created_at %></div>
+      <div class="grid-item"><%= order.line_items.count %></div>
+      <div class="grid-item"><%= order.total_price %></div>
+      <div class="grid-item"><%= order.requestor.name %></div>
+    <% end %>
+  </div>
  <% else %>
   <h4>You have no orders</h4>
 <% end %>
