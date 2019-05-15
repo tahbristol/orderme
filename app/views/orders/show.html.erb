@@ -1,0 +1,22 @@
+  <h1>Order Details</h1>
+  <h2>Submitted: <%= @order.created_at %></h2>
+  <h4>Current Status: <%= @order.status %></h4>
+  <h4>Requested by: <%= @order.requestor.name %></h4>
+  <% if @order.status == :pending %>
+    <h4>Purchased by: <%= @order.purchaser.name %></h4>
+  <% end %>
+ 
+  <div class="grid-container lineItems">
+    <div class="grid-item lineItems">Name</div>
+    <div class="grid-item lineItems">Quantity</div>
+    <div class="grid-item lineItems">Price</div>
+    <div class="grid-item lineItems">Cat No.</div>
+    <div class="grid-item lineItems">Vendor</div>
+    <% @order.line_items.each do |item| %>
+      <div class="grid-item lineItems"><%= item.name %></div>
+      <div class="grid-item lineItems"><%= item.quantity %></div>
+      <div class="grid-item lineItems"><%= item.price %></div>
+      <div class="grid-item lineItems"><%= item.catalogue_number%></div>
+      <div class="grid-item lineItems"><%= item.vendor %></div>
+    <% end %>
+  </div>

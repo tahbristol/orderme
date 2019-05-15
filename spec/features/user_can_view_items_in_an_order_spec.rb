@@ -12,5 +12,6 @@ feature "User can view items in an order" do
     find(".orderListItem_#{order.id}").click
     
     expect(page).to have_content 'Order Details'
+    expect(page).to have_content "#{order.line_items.first.name}"
   end
 end
