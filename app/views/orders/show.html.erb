@@ -7,16 +7,16 @@
   <% end %>
  
   <div class="grid-container lineItems">
-    <div class="grid-item lineItems">Name</div>
-    <div class="grid-item lineItems">Quantity</div>
-    <div class="grid-item lineItems">Price</div>
-    <div class="grid-item lineItems">Cat No.</div>
-    <div class="grid-item lineItems">Vendor</div>
+    <div class="grid-item">Name</div>
+    <div class="grid-item">Quantity</div>
+    <div class="grid-item">Price</div>
+    <div class="grid-item">Cat No.</div>
+    <div class="grid-item">Vendor</div>
     <% @order.line_items.each do |item| %>
-      <div class="grid-item lineItems"><%= item.name %></div>
-      <div class="grid-item lineItems"><%= item.quantity %></div>
-      <div class="grid-item lineItems"><%= item.price %></div>
-      <div class="grid-item lineItems"><%= item.catalogue_number%></div>
-      <div class="grid-item lineItems"><%= item.vendor %></div>
+      <div class="grid-item"><%= item.name %></div>
+      <div class="grid-item"><%= item.quantity %></div>
+      <div class="grid-item"><%= item.price %></div>
+      <div class="grid-item"><%= item.catalogue_number%></div>
+      <div class="grid-item"><%= item.vendor %></div>
     <% end %>
   </div>

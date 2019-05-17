@@ -1,0 +1,19 @@
+<% if !@orders.empty? %>
+  <h3>All Placed Orders</h3>
+  <div class="grid-container orderList">
+    <div class="grid-item">Date Requested</div>
+    <div class="grid-item">Status</div>
+    <div class="grid-item">Number of Items</div>
+    <div class="grid-item">Total Price</div>
+    <div class="grid-item">Requested By</div>
+    <% @orders.each do |order| %>
+      <div class="grid-item singleOrder"><%= link_to order.created_at, order_path(order), class:"orderListItem_#{order.id}" %></div>
+      <div class="grid-item "><%= order.status %></div>
+      <div class="grid-item "><%= order.line_items.count %></div>
+      <div class="grid-item "><%= order.total_price %></div>
+      <div class="grid-item "><%= order.requestor.name %></div>
+    <% end %>
+  </div>
+ <% else %>
+  <h4>No orders have been placed.</h4>
+<% end %>

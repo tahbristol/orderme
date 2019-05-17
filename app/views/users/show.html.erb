@@ -3,20 +3,24 @@
 <% if !@user.orders.empty? %>
   <h4>Submitted Orders</h4>
   <div class="grid-container orderList">
-    <div class="grid-item orderList">Date Requested</div>
-    <div class="grid-item orderList">Number of Items</div>
-    <div class="grid-item orderList">Total Price</div>
-    <div class="grid-item orderList">Requested By</div>
+    <div class="grid-item">Date Requested</div>
+    <div class="grid-item">Status</div>
+    <div class="grid-item">Number of Items</div>
+    <div class="grid-item">Total Price</div>
+    <div class="grid-item">Requested By</div>
     <% @user.orders.each do |order| %>
-      <div class="grid-item orderList"><%= link_to order.created_at, order_path(order), class:"orderListItem_#{order.id}" %></div>
-      <div class="grid-item orderList"><%= order.line_items.count %></div>
-      <div class="grid-item orderList"><%= order.total_price %></div>
-      <div class="grid-item orderList"><%= order.requestor.name %></div>
+      <div class="grid-item"><%= link_to order.created_at, order_path(order), class:"orderListItem_#{order.id}" %></div>
+      <div class="grid-item"><%= order.status %></div>
+      <div class="grid-item"><%= order.line_items.count %></div>
+      <div class="grid-item"><%= order.total_price %></div>
+      <div class="grid-item"><%= order.requestor.name %></div>
     <% end %>
   </div>
  <% else %>
   <h4>You have no orders</h4>
 <% end %>
 <%= link_to 'Create Order', new_order_path %>
+<br />
+<%= link_to "View All Orders", orders_path %>
 <br />
 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
