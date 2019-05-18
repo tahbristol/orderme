@@ -13,6 +13,18 @@ class OrdersController < ApplicationController
     redirect_to user_path current_user
   end
   
+  def edit
+    @order = Order.find(params[:id])
+    if @order.requestor != current_user
+      redirect_to order_path(@order)
+    end
+  end
+  
+  def update
+    current_user.orders.update(order_params)
+    redirect_to order_path(@order)
+  end
+  
   def show
     @order = Order.find(params[:id])
   end

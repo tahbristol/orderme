@@ -21,4 +21,8 @@
     <% end %>
   </div>
   <br />
+  <% if @order.requestor == current_user && @order.requested? %>
+    <%= link_to "Edit Order", edit_order_path(@order) %>
+  <% end %>
+  <br />
   <%= link_to "Your orders", user_path(current_user) %>

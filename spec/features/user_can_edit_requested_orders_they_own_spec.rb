@@ -13,7 +13,7 @@ feature "User can edit order" do
     expect(page).to have_content "Edit Order"
   end
   
-  scenario "when they own it and the order status is other than requested" do
+  scenario "unless they own it and the order status is other than requested" do
     sign_up('test name', 'test@email.com')
     
     create_order(1)
@@ -26,10 +26,10 @@ feature "User can edit order" do
     expect(page).not_to have_content "Edit Order"
   end
   
-  scenario "when they do not own it" do
+  scenario "unless they do not own it" do
     sign_up('test name', 'test@email.com')
+    create_other_users_order()
     
-    create_other_users_order(1)
     click_on "View All Orders"
     orders = page.all('.singleOrder')
     date = orders.first.text
