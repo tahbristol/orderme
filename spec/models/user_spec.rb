@@ -15,10 +15,17 @@ RSpec.describe User, type: :model do
     expect(user_2.errors.messages[:email][0]).to eq 'has already been taken'
   end
   
-  it "can be created with role as purchaser" do
-    user = User.new
+  it "has a default role as requestor" do
+    user = User.new(name: 'test name', email: 'test@email.com', password: 'password', password_confirmation: 'password')
     
     expect(user).to respond_to(:role)
-    
+    expect(user.requestor?).to eq true
   end
+  
+  it "can be created with role as purchaser" do
+    user = User.create(role: 1, name: 'test name', email: 'test@email.com', password: 'password', password_confirmation: 'password')
+    
+    expect(user.purchaser?).to eq true
+  end
+  
 end
