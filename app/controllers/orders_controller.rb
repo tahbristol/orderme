@@ -29,6 +29,17 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
   
+  def purchase
+    @order = Order.find(params[:order_id])
+    if @order.requested?
+      @order.update(purchaser: current_user, status: :pending)
+      flash[:notice] = "This order has been moved to your purchasing queue"
+    else
+      flash[:notice] = "This order already has a purchaser"
+    end
+    redirect_to @order
+  end
+  
   private
   
   def order_params

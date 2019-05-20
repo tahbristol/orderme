@@ -9,7 +9,5 @@ module Features
     check 'user[role]'
     
     click_on 'Sign up'
-    
-    User.first  
   end
 end

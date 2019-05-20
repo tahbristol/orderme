@@ -4,5 +4,10 @@ Rails.application.routes.draw do
   root to: 'home#index'
   
   resources :users, only: [:show]
-  resources :orders
+  resources :orders do
+    post 'purchase', to: 'orders#purchase'
+  end
+  
+  # redirect to root if bad path
+  get '*path' => redirect('/')
 end

@@ -7,7 +7,7 @@
     <div class="grid-item">Total Price</div>
     <div class="grid-item">Requested By</div>
     <% @orders.each do |order| %>
-      <div class="grid-item singleOrder"><%= link_to order.created_at, order_path(order), class:"orderListItem_#{order.id}" %></div>
+      <div class="grid-item singleOrder"><%= link_to order.created_at, order_path(order), id:"orderListItem_#{order.id}" %></div>
       <div class="grid-item "><%= order.status %></div>
       <div class="grid-item "><%= order.line_items.count %></div>
       <div class="grid-item "><%= order.total_price %></div>

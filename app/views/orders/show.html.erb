@@ -26,3 +26,7 @@
   <% end %>
   <br />
   <%= link_to "Your orders", user_path(current_user) %>
+  <% if @order.requested? %>
+  <br />
+  <%= link_to "Purchase", order_purchase_path(@order), method: :post %>
+  <% end %>
