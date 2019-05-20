@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   
   root to: 'home#index'
   
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    get 'purchased_queue', to: 'users/purchased_queue'
+  end
   resources :orders do
     post 'purchase', to: 'orders#purchase'
   end

@@ -31,4 +31,16 @@ RSpec.describe User, type: :model do
     expect(user.purchaser?).to eq true
   end
   
+  describe "#purchased_orders" do
+    it "returns orders if user as purchaser has orders they've purchased or are purchasing" do
+      attrs = attributes_for(:user).merge(role: 1)
+      user = User.create(attrs)
+      attrs = attributes_for(:order).merge(requestor_id: user.id, purchaser_id: user.id, status: :pending)
+      order = Order.create(attrs)
+      user.orders << order
+      
+      expect(user.purchased_orders.size).to eq 1
+    end
+  end
+  
 end

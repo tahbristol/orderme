@@ -12,4 +12,8 @@ class User < ApplicationRecord
   has_many :orders, through: :order_users
   
   enum role: [:requestor, :purchaser]
+  
+  def purchased_orders
+    orders.purchased
+  end
 end
