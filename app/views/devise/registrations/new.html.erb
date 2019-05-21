@@ -47,6 +47,13 @@
   							<%= f.submit "Sign up", class: "au-btn au-btn--block au-btn--green m-b-20" %>
   						</div>
 					  <% end %>
+            
+            <div class="register-link">
+                <p>
+                    Already have account?
+                    <%= render "devise/shared/links" %>
+                </p>
+            </div>
 				  </div>
 		    </div>
 		  </div>
@@ -54,4 +61,3 @@
   </div>
 </div>
 
-<%= render "devise/shared/links" %>
