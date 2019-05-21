@@ -1,38 +1,57 @@
-<h2>Sign up</h2>
+<div class="page-wrapper">
+	<div class="page-content--bge5">
+		<div class="container">
+			<div class="login-wrap">
+				<div class="login-content">
+					
+          <div class="login-logo">
+						<a href="#">
+							<%= image_tag "icon/logo.png", alt: "CoolAdmin" %>
+						</a>
+					</div>
+					
+          <div class="login-form">
+						<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  						<%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  						<div class="field">
+  							<%= f.label :name %><br/>
+  							<%= f.text_field :name, class: "au-input au-input--full" %>
+  						</div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+  						<div class="field">
+  							<%= f.label :email %><br/>
+  							<%= f.email_field :email, class: "au-input au-input--full" %>
+  						</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  						<div class="field">
+  							<%= f.label :password %>
+  							<% if @minimum_password_length %>
+  								<em>(<%= @minimum_password_length %>
+  									characters minimum)</em>
+  							<% end %><br/>
+  							<%= f.password_field :password, class: "au-input au-input--full" %>
+  						</div>
+
+  						<div class="field">
+  							<%= f.label :password_confirmation %><br/>
+  							<%= f.password_field :password_confirmation, class: "au-input au-input--full" %>
+  						</div>
+
+  						<div class="field">
+  							<%= f.check_box :role %>
+  							<%= f.label :Purchaser? %>
+  						</div>
+              
+  						<div class="actions">
+  							<%= f.submit "Sign up", class: "au-btn au-btn--block au-btn--green m-b-20" %>
+  						</div>
+					  <% end %>
+				  </div>
+		    </div>
+		  </div>
+	  </div>
   </div>
-  
-  <div class="field">
-    <%= f.check_box :role %>  
-    <%= f.label :Purchaser? %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+</div>
 
 <%= render "devise/shared/links" %>

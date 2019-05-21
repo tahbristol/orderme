@@ -12,4 +12,10 @@
  *
  *= require_tree .
  *= require_self
+ *= require theme.css
+ *= require font-face.css
+ *= require font-awesome-4.7/css/font-awesome.min.css
+ *= require font-awesome-5/css/fontawesome-all.min.css
+ *= require mdi-font/css/material-design-iconic-font.min.css
  */
+ @import "bootstrap";
