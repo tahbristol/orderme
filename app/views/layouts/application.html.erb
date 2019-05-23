@@ -5,14 +5,127 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <%= stylesheet_link_tag 'font-face.css', media: 'all' %>
+    <%= stylesheet_link_tag 'font-awesome-4.7/css/font-awesome.min.css', media: 'all' %>
+    <%= stylesheet_link_tag 'font-awesome-5/css/fontawesome-all.min.css', media: 'all' %>
+    <%= stylesheet_link_tag 'mdi-font/css/material-design-iconic-font.min.css', media: 'all' %>
+
+    <!-- Bootstrap CSS-->
+    <%= stylesheet_link_tag 'bootstrap.min.css', media: 'all' %>
+
+    <!-- Vendor CSS-->
+    <%= stylesheet_link_tag 'animsition.min.css', media: 'all' %>
+    <%= stylesheet_link_tag 'bootstrap-progressbar-3.3.4.min.css', media: 'all' %>
+    <%= stylesheet_link_tag 'animate.css', media: 'all' %>
+    <%= stylesheet_link_tag 'hamburgers.css', media: 'all' %>
+    <%= stylesheet_link_tag 'slick-theme.css', media: 'all' %>
+    <%= stylesheet_link_tag 'select2.min.css', media: 'all' %>
+    <%= stylesheet_link_tag 'perfect-scrollbar.css', media: 'all' %>
+
+    <!-- Main CSS-->
+    <%= stylesheet_link_tag 'theme.css', media: 'all' %>
+
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <%= yield %>
+  <body class="animsition">
+    <div class="page-wrapper">
+      <!-- MENU SIDEBAR-->
+      <aside class="menu-sidebar d-none d-lg-block">
+          <div class="logo">
+              <a href="#">
+                <%= image_tag "icon/logo.png", alt: 'Cool Admin' %>
+              </a>
+          </div>
+      </aside>
+      <!-- END MENU SIDEBAR-->
+      
+      <div class="page-container">
+      <!-- HEADER DESKTOP-->
+      <header class="header-desktop">
+          <div class="section__content section__content--p30">
+              <div class="container-fluid">
+                  <div class="header-wrap">
+                      <form class="form-header" action="" method="POST">
+                          <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                          <button class="au-btn--submit" type="submit">
+                              <i class="zmdi zmdi-search"></i>
+                          </button>
+                      </form>
+                      <div class="header-button">
+                        <% if current_user %>
+                          <div class="account-wrap">
+                              <div class="account-item clearfix js-item-menu">
+                                  <div class="image">
+                                      <%= image_tag "icon/avatar-06.jpg", alt: 'John Doe' %>
+                                  </div>
+                                  <div class="content">
+                                      <a class="js-acc-btn" href="#">john doe</a>
+                                  </div>
+                                  <div class="account-dropdown js-dropdown">
+                                      <div class="info clearfix">
+                                          <div class="image">
+                                              <a href="#">
+                                                  <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                              </a>
+                                          </div>
+                                          <div class="content">
+                                              <h5 class="name">
+                                                  <a href="#">john doe</a>
+                                              </h5>
+                                              <span class="email">johndoe@example.com</span>
+                                          </div>
+                                      </div>
+                                      <div class="account-dropdown__body">
+                                          <div class="account-dropdown__item">
+                                              <a href="#">
+                                                  <i class="zmdi zmdi-account"></i>Account</a>
+                                          </div>
+                                          <div class="account-dropdown__item">
+                                              <a href="#">
+                                                  <i class="zmdi zmdi-settings"></i>Setting</a>
+                                          </div>
+                                          <div class="account-dropdown__item">
+                                              <a href="#">
+                                                  <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                          </div>
+                                      </div>
+                                      <div class="account-dropdown__footer">
+                                        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                          <% end %>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+      <!-- END HEADER DESKTOP-->
+      
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      
+      <%= yield %>
+      </div>
+    </div>
+    <%= javascript_include_tag 'jquery-3.2.1.min.js', 'data-turbolinks-track': 'reload'%>
+    
+    <%= javascript_include_tag 'popper.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'slick.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wow.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'animsition.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'bootstrap-progressbar.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'jquery.waypoints.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'jquery.counterup.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'circle-progress.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'perfect-scrollbar.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'Chart.bundle.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'select2.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'main.js', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
