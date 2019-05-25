@@ -6,7 +6,7 @@ feature "User as purchaser can view purchased queue" do
     create_order(1)
     
     visit user_path(User.first)
-    click_on "View All Orders"
+    click_on "All Orders"
     
     find("#orderListItem_#{Order.first.id}").click
     click_on "Purchase"

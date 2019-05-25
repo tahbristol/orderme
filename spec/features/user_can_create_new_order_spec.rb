@@ -8,6 +8,6 @@ feature "User can create new order" do
   scenario "successfully" do
     create_order
     
-    expect(page).to have_content 'Submitted Orders'
+    expect(page).to have_content 'Orders'
   end
 end

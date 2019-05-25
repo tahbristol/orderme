@@ -5,7 +5,7 @@ feature "User can edit order" do
     sign_up('test name', 'test@email.com')
     
     create_order(1)
-    click_on "View All Orders"
+    click_on "All Orders"
     orders = page.all('.singleOrder')
     date = orders.first.text
     click_on date
@@ -18,7 +18,7 @@ feature "User can edit order" do
     
     create_order(1)
     order = Order.first.update(status: :pending)
-    click_on "View All Orders"
+    click_on "All Orders"
     orders = page.all('.singleOrder')
     date = orders.first.text
     click_on date 
@@ -30,7 +30,7 @@ feature "User can edit order" do
     sign_up('test name', 'test@email.com')
     create_other_users_order()
     
-    click_on "View All Orders"
+    click_on "All Orders"
     orders = page.all('.singleOrder')
     date = orders.first.text
     click_on date
