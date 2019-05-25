@@ -2,17 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.grid-container.lineItems {
+.grid-container {
   display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
-  background-color: #2196F3;
+  grid-template-columns: 20% 20% 20%;
+  margin-left: 130px;
   padding: 10px;
 }
 
-.lineItems .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
+.grid-item {
   text-align: center;
 }
 
@@ -28,4 +25,9 @@
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   text-align: center;
+}
+
+.orderDetails {
+  padding: 0px 50px;
+  margin-bottom: 30px;
 }

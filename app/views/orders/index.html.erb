@@ -1,21 +1,37 @@
-<% if !@orders.empty? %>
-  <h3>Placed Orders</h3>
-  <div class="grid-container orderList">
-    <div class="grid-item">Date Requested</div>
-    <div class="grid-item">Status</div>
-    <div class="grid-item">Number of Items</div>
-    <div class="grid-item">Total Price</div>
-    <div class="grid-item">Requested By</div>
-    <% @orders.each do |order| %>
-      <div class="grid-item singleOrder"><%= link_to order.created_at, order_path(order), id:"orderListItem_#{order.id}" %></div>
-      <div class="grid-item "><%= order.status %></div>
-      <div class="grid-item "><%= order.line_items.count %></div>
-      <div class="grid-item "><%= order.total_price %></div>
-      <div class="grid-item "><%= order.requestor.name %></div>
-    <% end %>
-  </div>
- <% else %>
-  <h4>No orders have been placed.</h4>
-<% end %>
-<br />
-<%= link_to "Your orders", user_path(current_user) %>
+<div class="section__content section__content--p30">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-9">
+				<% if !@orders.empty? %>
+					<h2 class="title-1 m-b-25">Placed Orders</h2>
+					<div class="table-responsive table--no-card m-b-40">
+						<table class="table table-borderless table-striped table-earning">
+							<thead>
+								<tr>
+									<th class="text-center">Date Requested</th>
+									<th class="text-center">Status</th>
+									<th class="text-center">Number of Items</th>
+									<th class="text-center">Total Price</th>
+									<th class="text-center">Requested By</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @orders.each do |order| %>
+									<tr class="orderList">
+										<td class="text-center singleOrder"><%= link_to order.created_at, order_path(order), id:"orderListItem_#{order.id}" %></td>
+										<td class="text-center"><%= order.status %></td>
+										<td class="text-center"><%= order.line_items.count %></td>
+										<td class="text-center"><%= order.total_price %></td>
+										<td class="text-center"><%= order.requestor.name %></td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+				<% else %>
+					<h4>No orders have been requested.</h4>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

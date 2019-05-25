@@ -9,7 +9,7 @@ feature "User can view items in an order" do
     create_order
     
     order = Order.first
-    find(".orderListItem_#{order.id}").click
+    find("#orderListItem_#{order.id}").click
     
     expect(page).to have_content 'Order Details'
     expect(page).to have_content "#{order.line_items.first.name}"

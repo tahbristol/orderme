@@ -1,38 +1,64 @@
-<h1>Order Details</h1>
-<h2>Submitted: <%= @order.created_at %></h2>
-<h4>Current Status: <%= @order.status %></h4>
-<h4>Requested by: <%= @order.requestor.name %></h4>
-<% if @order.status == :pending %>
-  <h4>Purchased by: <%= @order.purchaser.name %></h4>
-<% end %>
-<div class="grid-container lineItems">
-  <div class="grid-item">Name</div>
-  <div class="grid-item">Quantity</div>
-  <div class="grid-item">Price</div>
-  <div class="grid-item">Cat No.</div>
-  <div class="grid-item">Vendor</div>
-  <% @order.line_items.each do |item| %>
-    <div class="grid-item"><%= item.name %></div>
-    <div class="grid-item"><%= item.quantity %></div>
-    <div class="grid-item"><%= item.price %></div>
-    <div class="grid-item"><%= item.catalogue_number%></div>
-    <div class="grid-item"><%= item.vendor %></div>
+<div class="orderDetails">
+  <h1>Order Details</h1>
+  <h2>Submitted: <%= @order.created_at %></h2>
+  <h4>Current Status: <%= @order.status %></h4>
+  <h4>Requested by: <%= @order.requestor.name %></h4>
+  <% if @order.status == :pending %>
+    <h4>Purchased by: <%= @order.purchaser.name %></h4>
   <% end %>
 </div>
-<br />
-<% if @order.requestor == current_user && @order.requested? %>
-  <%= link_to "Edit Order", edit_order_path(@order) %>
-<% end %>
+  <div class="section__content section__content--p30">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="table-responsive table--no-card m-b-40">
+            <table class="table table-borderless table-striped table-earning">
+              <thead>
+                <tr>
+                  <th class="text-center">Name</th>
+                  <th class="text-center">Quantity</th>
+                  <th class="text-center">Price</th>
+                  <th class="text-center">Cat No.</th>
+                  <th class="text-center">Vendor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @order.line_items.each do |item| %>
+                  <tr>
+                    <td class="text-center"><%= item.name %></td>
+                    <td class="text-center"><%= item.quantity %></td>
+                    <td class="text-center"><%= item.price %></td>
+                    <td class="text-center"><%= item.catalogue_number %></td>
+                    <td class="text-center"><%= item.vendor %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<br />
-<%= link_to "Your orders", user_path(current_user) %>
 
-<% if @order.requested? %>
-  <br />
-  <%= link_to "Purchase", order_purchase_path(@order), method: :post %>
-<% end %>
+<div class="grid-container">
+  <div class="grid-item">
+    <% if @order.requestor == current_user && @order.requested? %>
+      <%= link_to "Edit Order", edit_order_path(@order), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="grid-item">
+    <% if @order.requested? %>
+      <%= link_to "Purchase", order_purchase_path(@order), method: :post, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="grid-item">
+    <% if current_user.purchased_orders.size %>
+      <%= link_to "Purchased Queue", user_purchased_queue_path(current_user), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
 
-<% if current_user.purchased_orders.size %>
-  <br />
-  <%= link_to "Purchased Queue", user_purchased_queue_path(current_user) %>
-<% end %>
+
+
+
