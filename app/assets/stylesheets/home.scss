@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body, html {
+  height: 100%;
+}
+.landing-main-content {
+  background-image: url('laboratory.jpg');
+  background-size: cover;
+  height: 100%;
+}
 .landingPage {
   margin-left: auto;
   margin-right: auto;
