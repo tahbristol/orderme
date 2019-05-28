@@ -5,8 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     
     <%= stylesheet_link_tag 'font-face.css', media: 'all' %>
     <%= stylesheet_link_tag 'font-awesome-4.7/css/font-awesome.min.css', media: 'all' %>
@@ -29,9 +29,9 @@
     <%= stylesheet_link_tag 'theme.css', media: 'all' %>
 
   </head>
-
+<% if current_user %>
   <body class="animsition">
-    <% if current_user %>
+    
       <div class="page-wrapper">
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
@@ -223,8 +223,8 @@
       </div>
     </div>
     <% else %>
-      
-      <div class="main-content">
+      <body>
+      <div class="landing-main-content">
         <div id="flashAlerts">
           <p class="notice"><%= notice %></p>
           <p class="alert"><%= alert %></p>
@@ -233,20 +233,20 @@
         <%= yield %>
       </div>
     <% end %>
-    <%= javascript_include_tag 'jquery-3.2.1.min.js', 'data-turbolinks-track': 'reload'%>
+    <%= javascript_include_tag 'jquery-3.2.1.min.js'%>
     
-    <%= javascript_include_tag 'popper.min.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'slick.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'wow.min.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'animsition.min.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'bootstrap-progressbar.min.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'jquery.waypoints.min.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'jquery.counterup.min.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'circle-progress.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'perfect-scrollbar.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'Chart.bundle.min.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'select2.min.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'main.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'popper.min.js' %>
+    <%= javascript_include_tag 'bootstrap.min.js' %>
+    <%= javascript_include_tag 'slick.js' %>
+    <%= javascript_include_tag 'wow.min.js' %>
+    <%= javascript_include_tag 'animsition.min.js' %>
+    <%= javascript_include_tag 'bootstrap-progressbar.min.js' %>
+    <%= javascript_include_tag 'jquery.waypoints.min.js' %>
+    <%= javascript_include_tag 'jquery.counterup.min.js' %>
+    <%= javascript_include_tag 'circle-progress.js' %>
+    <%= javascript_include_tag 'perfect-scrollbar.js' %>
+    <%= javascript_include_tag 'Chart.bundle.min.js' %>
+    <%= javascript_include_tag 'select2.min.js' %>
+    <%= javascript_include_tag 'main.js' %>
   </body>
 </html>
