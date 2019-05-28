@@ -4,12 +4,13 @@ Rails.application.routes.draw do
   root to: 'home#index'
   
   resources :users, only: [:show] do
-    get 'purchased_queue', to: 'users/purchased_queue'
+    
   end
   resources :orders do
     post 'purchase', to: 'orders#purchase'
   end
+  get 'purchased_queue', to: 'orders#purchased_queue'
   
   # redirect to root if bad path
-  get '*path' => redirect('/')
+  #get '*path' => redirect('/')
 end

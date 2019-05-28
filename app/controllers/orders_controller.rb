@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   
   def index
     @orders = Order.all
+    render :index
   end
   
   def new
@@ -26,7 +27,8 @@ class OrdersController < ApplicationController
   end
   
   def show
-    @order = Order.find(params[:id])
+    @order = Order.includes(:line_items).find(params[:id])
+    render :show
   end
   
   def purchase
@@ -38,6 +40,11 @@ class OrdersController < ApplicationController
       flash[:notice] = "This order already has a purchaser"
     end
     redirect_to @order
+  end
+  
+  def purchased_queue #
+    @orders = current_user.orders.purchased
+    render :index
   end
   
   private
