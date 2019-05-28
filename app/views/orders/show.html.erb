@@ -48,13 +48,13 @@
     <% end %>
   </div>
   <div class="grid-item">
-    <% if @order.requested? %>
+    <% if @order.requested? && current_user.purchaser? %>
       <%= link_to "Purchase", order_purchase_path(@order), method: :post, class: "btn btn-primary" %>
     <% end %>
   </div>
   <div class="grid-item">
     <% if current_user.purchased_orders.size %>
-      <%= link_to "Purchased Queue", user_purchased_queue_path(current_user), class: "btn btn-primary" %>
+      <%= link_to "Purchased Queue", purchased_queue_path, class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

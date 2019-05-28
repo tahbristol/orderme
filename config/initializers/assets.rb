@@ -1,3 +1,4 @@
+
 # Be sure to restart your server when you modify this file.
 
 # Version of your assets, change this if you want to expire all your assets.
@@ -12,5 +13,4 @@ Rails.application.config.assets.paths << Rails.root.join('vendor')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 Rails.application.config.assets.precompile += %w( icon/logo.png icon/avatar-06.jpg manifest.js )
-#Rails.application.config.assets.precompile = ["manifest.js"]
 

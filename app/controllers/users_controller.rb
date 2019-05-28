@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
-  end
-  
-  def purchased_queue
-    @orders = current_user.orders.purchased
-    render 'orders/index'
+    @user = User.includes(:orders).find(params[:id])
+    render :show
   end
 end

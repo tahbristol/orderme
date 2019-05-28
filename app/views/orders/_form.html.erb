@@ -1,0 +1,56 @@
+<div class="col-md-6">
+  <div class="card-body card-block">
+    <%= form_for @order, class: 'form-horizontal' do |f| %>
+
+      <%= f.fields_for :line_items, @order.line_items.build do |item| %>
+      <div class="row form-group">
+        <div class="col col-md-3">
+          <%= item.label :name, class: 'form-label-control' %>
+        </div>
+        <div class="col-12 col-md-9">
+          <%= item.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+        
+      <div class="row form-group">
+        <div class="col col-md-3">
+          <%= item.label :quantity, class: 'form-label-control' %>
+        </div>
+        <div class="col-12 col-md-9">
+          <%= item.text_field :quantity, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col col-md-3">
+          <%= item.label :price, class: 'form-label-control' %>
+        </div>
+        <div class="col-12 col-md-9">
+          <%= item.text_field :price, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col col-md-3">
+          <%= item.label :catalogue_number, class: 'form-label-control' %>
+        </div>
+        <div class="col-12 col-md-9">
+          <%= item.text_field :catalogue_number, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col col-md-3">
+          <%= item.label :vendor, class: 'form-label-control' %>
+        </div>
+        <div class="col-12 col-md-9">
+          <%= item.text_field :vendor, class: 'form-control' %>
+        </div>
+      </div>
+
+      <% end %>
+      <%= f.hidden_field :requestor_id, value: current_user.id %>
+        <br />
+      <%= f.submit "Submit Order", class: 'btn btn-secondary' %>
+    <% end %>
+    <br />
+    <%= link_to "Cancel", user_path(current_user), class: 'btn btn-secondary' %>
+  </div>
+</div>
