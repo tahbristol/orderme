@@ -12,7 +12,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<%= f.fields_for :line_items, @order.line_items.build do |item| %>
+			<%= f.fields_for :line_items, @line_items do |item| %>
 			<tr>
 				<td class="text-center" style="padding-top: 20px;"><%= item.index + 1%>.</td>
 				<td class="text-center"><%= item.text_field :name, class: 'form-control' %></td>

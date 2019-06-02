@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   
   def new
     @order = Order.new
+    @line_items = @order.line_items.build
   end
   
   def create
