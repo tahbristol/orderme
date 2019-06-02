@@ -44,6 +44,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'sqlite3'
+  gem 'faker'
 end
 
 group :development do
@@ -61,6 +62,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'dotenv-rails'
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '>= 4.3.1'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+# Security Vulnerabilities via github

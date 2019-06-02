@@ -8,7 +8,6 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     
-    <%= stylesheet_link_tag 'font-face.css', media: 'all' %>
     <%= stylesheet_link_tag 'font-awesome-4.7/css/font-awesome.min.css', media: 'all' %>
     <%= stylesheet_link_tag 'font-awesome-5/css/fontawesome-all.min.css', media: 'all' %>
     <%= stylesheet_link_tag 'mdi-font/css/material-design-iconic-font.min.css', media: 'all' %>
@@ -31,7 +30,7 @@
     <%= javascript_include_tag 'jquery-3.2.1.min.js'%>
     
     <%= javascript_include_tag 'popper.min.js' %>
-    <%= javascript_include_tag 'bootstrap.min.js' %>
+    
     <%= javascript_include_tag 'slick.js' %>
     <%= javascript_include_tag 'wow.min.js' %>
     <%= javascript_include_tag 'animsition.min.js' %>
@@ -46,7 +45,7 @@
 
   </head>
 <% if current_user %>
-  <body class="animsition">
+  <body class="">
     
       <div class="page-wrapper">
         <!-- MENU SIDEBAR-->
@@ -91,8 +90,11 @@
                                                     <%= current_user.name %>
                                                 </h5>
                                                 <span class="email"><%= current_user.email %></span>
+                                                <br />
+                                                <span><small>Role: <%= current_user.role %></small></span>
                                             </div>
                                         </div>
+                                        
                                         <div class="account-dropdown__body">
                                             <div class="account-dropdown__item">
                                                 <a href="#">
