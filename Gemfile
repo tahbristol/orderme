@@ -43,6 +43,7 @@ group :development, :test do
   gem 'webdrivers', '~> 3.0'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do

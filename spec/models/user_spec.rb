@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
     user_1 = create(:user)
     
     attrs = attributes_for(:user)
-    user_2 = User.create(attrs)
+    user_2 = User.create(attrs.update(email: user_1.email))
     
     expect(user_2.errors.messages[:email][0]).to eq 'has already been taken'
   end

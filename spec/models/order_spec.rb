@@ -31,7 +31,7 @@ RSpec.describe Order, type: :model do
     it "returns the orders that have a purchasor_id" do
       @purchased_order = build(:order)
       @non_purchased_order = build(:order)
-      @purchased_order.purchaser = User.create(name:'purchaser', email: 'purchase@email.com', password: 'password', password_confirmation: 'password')
+      @purchased_order.purchaser = create(:user)
       @purchased_order.save
       
       @purchased_orders = Order.purchased
