@@ -40,7 +40,6 @@
     </div>
   </div>
 
-
 <div class="grid-container">
   <div class="grid-item">
     <% if @order.requestor == current_user && @order.requested? %>
@@ -53,7 +52,7 @@
     <% end %>
   </div>
   <div class="grid-item">
-    <% if current_user.purchased_orders.size %>
+    <% if !current_user.purchased_orders.empty? %>
       <%= link_to "Purchased Queue", purchased_queue_path, class: "btn btn-primary" %>
     <% end %>
   </div>

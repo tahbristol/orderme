@@ -14,6 +14,6 @@ class User < ApplicationRecord
   enum role: [:requestor, :purchaser]
   
   def purchased_orders
-    orders.purchased
+    Order.purchased.where(purchaser: self)
   end
 end

@@ -1,49 +1,30 @@
 <%= form_for @order, class: 'form-horizontal' do |f| %>
-
-<%= f.fields_for :line_items, @order.line_items.build do |item| %>
-<div class="row form-group">
-	<div class="col col-md-3">
-		<%= item.label :name, class: 'form-label-control' %>
-	</div>
-	<div class="col-12 col-md-9">
-		<%= item.text_field :name, class: 'form-control' %>
-	</div>
+<div class="table-responsive table--no-card m-b-40">
+	<table class="table table-borderless table-striped table-earning">
+		<thead>
+			<tr>
+				<th class="text-center">No.</th>
+				<th class="text-center">Name</th>
+				<th class="text-center">Quantity</th>
+				<th class="text-center">Price</th>
+				<th class="text-center">Cat No.</th>
+				<th class="text-center">Vendor</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%= f.fields_for :line_items, @order.line_items.build do |item| %>
+			<tr>
+				<td class="text-center" style="padding-top: 20px;"><%= item.index + 1%>.</td>
+				<td class="text-center"><%= item.text_field :name, class: 'form-control' %></td>
+				<td class="text-center"><%= item.text_field :quantity, class: 'form-control' %></td>
+				<td class="text-center"><%= item.text_field :price, class: 'form-control' %></td>
+				<td class="text-center"><%= item.text_field :catalogue_number, class: 'form-control' %></td>
+				<td class="text-center"><%= item.text_field :vendor, class: 'form-control' %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
 </div>
-
-<div class="row form-group">
-	<div class="col col-md-3">
-		<%= item.label :quantity, class: 'form-label-control' %>
-	</div>
-	<div class="col-12 col-md-9">
-		<%= item.text_field :quantity, class: 'form-control' %>
-	</div>
-</div>
-<div class="row form-group">
-	<div class="col col-md-3">
-		<%= item.label :price, class: 'form-label-control' %>
-	</div>
-	<div class="col-12 col-md-9">
-		<%= item.text_field :price, class: 'form-control' %>
-	</div>
-</div>
-<div class="row form-group">
-	<div class="col col-md-3">
-		<%= item.label :catalogue_number, class: 'form-label-control' %>
-	</div>
-	<div class="col-12 col-md-9">
-		<%= item.text_field :catalogue_number, class: 'form-control' %>
-	</div>
-</div>
-<div class="row form-group">
-	<div class="col col-md-3">
-		<%= item.label :vendor, class: 'form-label-control' %>
-	</div>
-	<div class="col-12 col-md-9">
-		<%= item.text_field :vendor, class: 'form-control' %>
-	</div>
-</div>
-
-<% end %>
 <%= f.hidden_field :requestor_id, value: current_user.id %>
 <br/>
 <%= f.submit "Submit Order", class: 'btn btn-secondary' %>
