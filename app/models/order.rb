@@ -11,7 +11,7 @@ class Order < ApplicationRecord
   
   accepts_nested_attributes_for :line_items, allow_destroy: true, reject_if: proc { |attributes| attributes['name'].blank? }
   
-  scope :purchased, -> { self.where.not(status: :requested) }
+  scope :purchased, -> { self.where.not(purchaser_id: nil) }
   
   def total_price
     line_items.reduce(0) { |total, item| item.total + total}

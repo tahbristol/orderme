@@ -26,4 +26,18 @@ RSpec.describe Order, type: :model do
       expect(@order.total_price).to eq 400
     end
   end
+  
+  describe ".purchased" do
+    it "returns the orders that have a purchasor_id" do
+      @purchased_order = build(:order)
+      @non_purchased_order = build(:order)
+      @purchased_order.purchaser = User.create(name:'purchaser', email: 'purchase@email.com', password: 'password', password_confirmation: 'password')
+      @purchased_order.save
+      
+      @purchased_orders = Order.purchased
+      
+      expect(@purchased_orders.count).to eq 1
+      expect(@purchased_orders.first).to eq @purchased_order
+    end
+  end
 end

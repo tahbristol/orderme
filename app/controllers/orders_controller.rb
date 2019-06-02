@@ -41,8 +41,8 @@ class OrdersController < ApplicationController
     redirect_to @order
   end
   
-  def purchased_queue #
-    @orders = current_user.orders.purchased
+  def purchased_queue
+    @orders = Order.purchased.where(purchaser: current_user)
     render :index
   end
   
