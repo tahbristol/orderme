@@ -9,6 +9,7 @@
 				<th class="text-center">Price</th>
 				<th class="text-center">Cat No.</th>
 				<th class="text-center">Vendor</th>
+        <th class="text-center">Remove?</th>
 			</tr>
 		</thead>
 		<tbody id="orderLineItems">
@@ -20,6 +21,7 @@
 				<td class="text-center"><%= item.text_field :price, class: 'form-control' %></td>
 				<td class="text-center"><%= item.text_field :catalogue_number, class: 'form-control' %></td>
 				<td class="text-center"><%= item.text_field :vendor, class: 'form-control' %></td>
+        <td class="text-center"></td>
 			</tr>
 		<% end %>
 	</tbody>

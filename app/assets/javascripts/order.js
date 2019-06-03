@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 	$('#addItem').on('click', function(e){
+		e.preventDefault()
 		addItem();
+		initRemoveItemListener()
 	})
 });
 
@@ -21,4 +23,16 @@ function addItem(){
 	let html = template({entryIndex: newIndex, itemFormIndex: newIndex, itemCount: newCount})
 	
 	$('#new_order tbody').append(html);
+}
+
+function initRemoveItemListener(){
+	$('.removeItem').on('click', function(e){
+		e.preventDefault()
+		removeItem(e.target);
+	})
+}
+
+function removeItem(link){
+	let itemToRemove = $(link).parent().parent();
+	$(itemToRemove).remove();
 }
