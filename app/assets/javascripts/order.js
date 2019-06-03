@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function addItem(){
-	let itemTableRows = $('#new_order tbody tr');
+	let itemTableRows = $('#orderLineItems tr');
 	let lastRow = $(itemTableRows).last();
 	// in a new form this is 0
 	let lastIndex = parseInt($(lastRow).attr('id').split('_')[1]);
@@ -22,7 +22,7 @@ function addItem(){
 	
 	let html = template({entryIndex: newIndex, itemFormIndex: newIndex, itemCount: newCount})
 	
-	$('#new_order tbody').append(html);
+	$('#orderLineItems').append(html);
 }
 
 function initRemoveItemListener(){
