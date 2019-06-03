@@ -11,9 +11,9 @@
 				<th class="text-center">Vendor</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="orderLineItems">
 			<%= f.fields_for :line_items, @line_items do |item| %>
-			<tr id="item_<%= item.index %>">
+			<tr class="line_item" id="item_<%= item.index %>">
 				<td class="text-center" style="padding-top: 20px;"><%= item.index + 1%>.</td>
 				<td class="text-center"><%= item.text_field :name, class: 'form-control' %></td>
 				<td class="text-center"><%= item.text_field :quantity, class: 'form-control' %></td>
