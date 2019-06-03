@@ -177,6 +177,18 @@
         <%= yield %>
       </div>
     <% end %>
+    
     <%= javascript_include_tag 'main.js' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <script id="itemTemplate" type="text/x-handlebars-template">
+      <tr id="item_{{ entryIndex }}">
+      <td class="text-center" style="padding-top: 20px;">{{ itemCount }}.</td>
+				<td class="text-center"><input class="form-control" type="text" name="order[line_items_attributes][{{ itemFormIndex }}][name]" id="order_line_items_attributes_{{ itemFormIndex }}_name"></td>
+				<td class="text-center"><input class="form-control" type="text" name="order[line_items_attributes][{{ itemFormIndex }}][quantity]" id="order_line_items_attributes_{{ itemFormIndex }}_quantity"></td>
+				<td class="text-center"><input class="form-control" type="text" name="order[line_items_attributes][{{ itemFormIndex }}][price]" id="order_line_items_attributes_{{ itemFormIndex }}_price"></td>
+				<td class="text-center"><input class="form-control" type="text" name="order[line_items_attributes][{{ itemFormIndex }}][catalogue_number]" id="order_line_items_attributes_{{ itemFormIndex }}_catalogue_number"></td>
+				<td class="text-center"><input class="form-control" type="text" name="order[line_items_attributes][{{ itemFormIndex }}][vendor]" id="order_line_items_attributes_{{ itemFormIndex }}_vendor"></td>
+      </tr>
+    </script>
   </body>
 </html>
