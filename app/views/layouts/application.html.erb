@@ -131,39 +131,37 @@
           </div>
           <!-- MENU SIDEBAR-->
           <aside class="menu-sidebar d-none d-lg-block">
-              <div class="logo">
-                  <a href="#">
-                    <%= image_tag "icon/logo.png", alt: 'Cool Admin' %>
-                  </a>
-              </div>
+            <div class="logo">
+              <a href="#">
+                <%= image_tag "icon/logo.png", alt: 'Cool Admin' %>
+              </a>
+            </div>
 
-              <div class="menu-sidebar__content js-scrollbar1">
-                  <nav class="navbar-sidebar">
-                      <ul class="list-unstyled navbar__list">
-                          <li class="active has-sub">
-                            <h3>Hi, <%= current_user.name %></h3>
-                              <a class="js-arrow" href="#">
-                                  <i class="fas fa-tachometer-alt"></i>Actions</a>
-                              <ul class="list-unstyled ">
-                                  <li>
-                                      <%= link_to "Create Order", new_order_path %>
-                                  </li>
-                                  <li>
-                                      <%= link_to "Your Orders", user_path(current_user) %>
-                                  </li>
-                                  <% if current_user.purchaser? %>
-                                    <li>
-                                      <%= link_to "Purchased Queue", purchased_queue_path %>
-                                    </li>
-                                  <% end %>
-                                  <li>
-                                      <%= link_to "All Orders", orders_path %>
-                                  </li>
-                              </ul>
+            <div class="menu-sidebar__content js-scrollbar1">
+              <nav class="navbar-sidebar">
+                <ul class="list-unstyled navbar__list">
+                  <li class="active has-sub">
+                    <h3>Hi, <%= current_user.name %></h3>
+                      <ul class="list-unstyled ">
+                        <li>
+                          <%= link_to "Create Order", new_order_path %>
+                        </li>
+                        <li>
+                          <%= link_to "Your Orders", user_path(current_user) %>
+                        </li>
+                        <% if current_user.purchaser? %>
+                          <li>
+                            <%= link_to "Purchased Queue", purchased_queue_path %>
                           </li>
+                        <% end %>
+                        <li>
+                          <%= link_to "All Orders", orders_path %>
+                        </li>
                       </ul>
-                  </nav>
-              </div>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </aside>
           <!-- END MENU SIDEBAR-->
           <%= yield %>
