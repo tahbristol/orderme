@@ -8,7 +8,7 @@ feature "Users can view all orders" do
     click_on "All Orders"
     orders = page.all('.orderList .singleOrder')
     
-    expect(page).to have_content "Placed Orders"
+    expect(page).to have_content "Orders" 
     expect(orders.count).to eq 4
     
   end

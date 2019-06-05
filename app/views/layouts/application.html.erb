@@ -4,11 +4,12 @@
     <title>Orderme</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    
-    <%= stylesheet_link_tag 'font-face.css', media: 'all' %>
+
     <%= stylesheet_link_tag 'font-awesome-4.7/css/font-awesome.min.css', media: 'all' %>
     <%= stylesheet_link_tag 'font-awesome-5/css/fontawesome-all.min.css', media: 'all' %>
     <%= stylesheet_link_tag 'mdi-font/css/material-design-iconic-font.min.css', media: 'all' %>
@@ -27,11 +28,11 @@
 
     <!-- Main CSS-->
     <%= stylesheet_link_tag 'theme.css', media: 'all' %>
-    
+
     <%= javascript_include_tag 'jquery-3.2.1.min.js'%>
-    
+
     <%= javascript_include_tag 'popper.min.js' %>
-    <%= javascript_include_tag 'bootstrap.min.js' %>
+
     <%= javascript_include_tag 'slick.js' %>
     <%= javascript_include_tag 'wow.min.js' %>
     <%= javascript_include_tag 'animsition.min.js' %>
@@ -42,12 +43,12 @@
     <%= javascript_include_tag 'perfect-scrollbar.js' %>
     <%= javascript_include_tag 'Chart.bundle.min.js' %>
     <%= javascript_include_tag 'select2.min.js' %>
-    
+
 
   </head>
 <% if current_user %>
-  <body class="animsition">
-    
+  <body class="">
+
       <div class="page-wrapper">
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
@@ -58,7 +59,7 @@
             </div>
         </aside>
         <!-- END MENU SIDEBAR-->
-        
+
         <div class="page-container">
         <!-- HEADER DESKTOP-->
         <header class="header-desktop">
@@ -91,8 +92,11 @@
                                                     <%= current_user.name %>
                                                 </h5>
                                                 <span class="email"><%= current_user.email %></span>
+                                                <br />
+                                                <span><small>Role: <%= current_user.role %></small></span>
                                             </div>
                                         </div>
+
                                         <div class="account-dropdown__body">
                                             <div class="account-dropdown__item">
                                                 <a href="#">
@@ -127,39 +131,42 @@
           </div>
           <!-- MENU SIDEBAR-->
           <aside class="menu-sidebar d-none d-lg-block">
-              <div class="logo">
-                  <a href="#">
-                    <%= image_tag "icon/logo.png", alt: 'Cool Admin' %>
-                  </a>
-              </div>
-              
-              <div class="menu-sidebar__content js-scrollbar1">
-                  <nav class="navbar-sidebar">
-                      <ul class="list-unstyled navbar__list">
-                          <li class="active has-sub">
-                            <h3>Hi, <%= current_user.name %></h3>
-                              <a class="js-arrow" href="#">
-                                  <i class="fas fa-tachometer-alt"></i>Actions</a>
-                              <ul class="list-unstyled ">
-                                  <li>
-                                      <%= link_to "Create Order", new_order_path %>
-                                  </li>
-                                  <li>
-                                      <%= link_to "Your Orders", user_path(current_user) %>
-                                  </li>
-                                  <li>
-                                      <%= link_to "All Orders", orders_path %>
-                                  </li>
-                              </ul>
+            <div class="logo">
+              <a href="#">
+                <%= image_tag "icon/logo.png", alt: 'Cool Admin' %>
+              </a>
+            </div>
+
+            <div class="menu-sidebar__content js-scrollbar1">
+              <nav class="navbar-sidebar">
+                <ul class="list-unstyled navbar__list">
+                  <li class="active has-sub">
+                    <h3>Hi, <%= current_user.name %></h3>
+                      <ul class="list-unstyled ">
+                        <li>
+                          <%= link_to "Create Order", new_order_path %>
+                        </li>
+                        <li>
+                          <%= link_to "Your Orders", user_path(current_user) %>
+                        </li>
+                        <% if current_user.purchaser? %>
+                          <li>
+                            <%= link_to "Purchased Queue", purchased_queue_path %>
                           </li>
+                        <% end %>
+                        <li>
+                          <%= link_to "All Orders", orders_path %>
+                        </li>
                       </ul>
-                  </nav>
-              </div>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </aside>
           <!-- END MENU SIDEBAR-->
-          <%= yield %>  
+          <%= yield %>
         </div>
-        
+
       </div>
     </div>
     <% else %>
@@ -169,10 +176,23 @@
           <p class="notice"><%= notice %></p>
           <p class="alert"><%= alert %></p>
         </div>
-        
+
         <%= yield %>
       </div>
     <% end %>
+
     <%= javascript_include_tag 'main.js' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <script id="itemTemplate" type="text/x-handlebars-template">
+      <tr class="line_item" id="item_{{ entryIndex }}">
+      <td class="text-center" style="padding-top: 20px;">{{ itemCount }}.</td>
+				<td class="text-center"><input class="form-control" type="text" name="order[line_items_attributes][{{ itemFormIndex }}][name]" id="order_line_items_attributes_{{ itemFormIndex }}_name"></td>
+				<td class="text-center"><input class="form-control" type="text" name="order[line_items_attributes][{{ itemFormIndex }}][quantity]" id="order_line_items_attributes_{{ itemFormIndex }}_quantity"></td>
+				<td class="text-center"><input class="form-control" type="text" name="order[line_items_attributes][{{ itemFormIndex }}][price]" id="order_line_items_attributes_{{ itemFormIndex }}_price"></td>
+				<td class="text-center"><input class="form-control" type="text" name="order[line_items_attributes][{{ itemFormIndex }}][catalogue_number]" id="order_line_items_attributes_{{ itemFormIndex }}_catalogue_number"></td>
+				<td class="text-center"><input class="form-control" type="text" name="order[line_items_attributes][{{ itemFormIndex }}][vendor]" id="order_line_items_attributes_{{ itemFormIndex }}_vendor"></td>
+        <td class="text-center"><a href="#" class="removeItem">X</a></td>
+      </tr>
+    </script>
   </body>
 </html>

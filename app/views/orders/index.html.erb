@@ -3,7 +3,12 @@
 		<div class="row">
 			<div class="col-lg-9">
 				<% if !@orders.empty? %>
-					<h2 class="title-1 m-b-25">Placed Orders</h2>
+          <% if params[:action] == 'purchased_queue' %>
+            <h2 class="title-1 m-b-25">Your Purchased Orders</h2>
+          <% else %>
+            <h2 class="title-1 m-b-25">Requested Orders</h2>
+          <% end %>
+					
 					<div class="table-responsive table--no-card m-b-40">
 						<table class="table table-borderless table-striped table-earning">
 							<thead>
