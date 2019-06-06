@@ -11,9 +11,7 @@ feature "User as purchaser can view purchased queue" do
     find("#viewOrderListItem_#{Order.first.id}").click
     click_on "Purchase"
 
-    within '.grid-container' do
-      click_on "Purchased Queue"
-    end
+    click_on "Purchased Queue"
     
     order = Order.first
     expect(page).to have_content(order.created_at)
