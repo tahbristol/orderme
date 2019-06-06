@@ -24,7 +24,7 @@
 							<tbody>
 								<% @orders.each do |order| %>
 									<tr class="orderList">
-										<td class="text-center singleOrder"><%= order.created_at %></td>
+										<td class="text-center singleOrder"><%= order.date_requested %></td>
 										<td class="text-center"><%= order.status %></td>
 										<td class="text-center"><%= order.line_items.count %></td>
 										<td class="text-center"><%= order.total_price %></td>
