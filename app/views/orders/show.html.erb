@@ -40,7 +40,7 @@
     </div>
   </div>
 
-<div class="grid-container">
+<div class="grid-container orderButtons">
   <div class="grid-item">
     <% if @order.requestor == current_user && @order.requested? %>
       <%= link_to "Edit Order", edit_order_path(@order), class: "btn btn-primary" %>
