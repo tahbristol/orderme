@@ -6,9 +6,8 @@ feature "User can edit order" do
     
     create_order(1)
     click_on "All Orders"
-    orders = page.all('.singleOrder')
-    date = orders.first.text
-    click_on date
+    order = Order.last
+    click_on "viewOrderListItem_#{order.id}"
     
     expect(page).to have_content "Edit Order"
   end
@@ -19,9 +18,8 @@ feature "User can edit order" do
     create_order(1)
     order = Order.first.update(status: :pending)
     click_on "All Orders"
-    orders = page.all('.singleOrder')
-    date = orders.first.text
-    click_on date 
+    order = Order.last
+    click_on "viewOrderListItem_#{order.id}" 
     
     expect(page).not_to have_content "Edit Order"
   end
@@ -31,9 +29,8 @@ feature "User can edit order" do
     create_other_users_order()
     
     click_on "All Orders"
-    orders = page.all('.singleOrder')
-    date = orders.first.text
-    click_on date
+    order = Order.last
+    click_on "viewOrderListItem_#{order.id}"
     
     expect(page).not_to have_content "Edit Order"
   end

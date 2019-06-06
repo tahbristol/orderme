@@ -8,7 +8,7 @@ feature "User as purchaser can view purchased queue" do
     visit user_path(User.first)
     click_on "All Orders"
 
-    find("#orderListItem_#{Order.first.id}").click
+    find("#viewOrderListItem_#{Order.first.id}").click
     click_on "Purchase"
 
     within '.grid-container' do
