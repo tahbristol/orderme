@@ -14,7 +14,7 @@ feature "User as purchaser can view purchased queue" do
     click_on "Purchased Queue"
     
     order = Order.first
-    expect(page).to have_content(order.created_at)
+    expect(page).to have_content(order.date_requested)
     expect(page).to have_content("pending")
   end
 end
