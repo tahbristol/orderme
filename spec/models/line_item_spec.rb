@@ -14,9 +14,11 @@ RSpec.describe LineItem, type: :model do
     expect(@line_item.price.class).to eq Integer
   end
   
-  it "returns a human readable price" do
-    @line_item = create(:order).line_items.first
-    
-    expect(@line_item.readable_price(@line_item.price)).to eq '$100.00'
+  describe "#display_price" do
+    it "returns a human readable price" do
+      @line_item = create(:order).line_items.first
+      
+      expect(@line_item.display_price).to eq '$100.00'
+    end
   end
 end

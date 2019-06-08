@@ -23,7 +23,7 @@ RSpec.describe Order, type: :model do
       @line_item_4 = build(:line_item)
       
       @order.line_items = [@line_item_1, @line_item_2, @line_item_3, @line_item_4]
-      expect(@order.total_price).to eq 40000
+      expect(@order.total_price).to eq 400
     end
   end
   
@@ -41,15 +41,17 @@ RSpec.describe Order, type: :model do
     end
   end
   
-  it "returns human readable total price" do
-    @order = Order.new
-    
-    @line_item_1 = build(:line_item)
-    @line_item_2 = build(:line_item)
-    @line_item_3 = build(:line_item)
-    @line_item_4 = build(:line_item)
-    
-    @order.line_items = [@line_item_1, @line_item_2, @line_item_3, @line_item_4]
-    expect(@order.readable_price(@order.total_price)).to eq "$400.00"
+  describe "#display_total" do
+    it "returns human readable total price" do
+      @order = Order.new
+      
+      @line_item_1 = build(:line_item)
+      @line_item_2 = build(:line_item)
+      @line_item_3 = build(:line_item)
+      @line_item_4 = build(:line_item)
+      
+      @order.line_items = [@line_item_1, @line_item_2, @line_item_3, @line_item_4]
+      expect(@order.display_total).to eq "$4.00"
+    end
   end
 end

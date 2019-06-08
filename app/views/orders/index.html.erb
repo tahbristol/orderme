@@ -27,7 +27,7 @@
 										<td class="text-center singleOrder"><%= order.date_requested %></td>
 										<td class="text-center"><%= order.status %></td>
 										<td class="text-center"><%= order.line_items.count %></td>
-										<td class="text-center"><%= order.total_price %></td>
+										<td class="text-center"><%= order.display_total %></td>
 										<td class="text-center"><%= order.requestor.name %></td>
                     <td class="text-center"><%= link_to "View", order_path(order), class: "btn btn-danger", id: "viewOrderListItem_#{order.id}" %>
 									</tr>

@@ -18,6 +18,10 @@ class Order < ApplicationRecord
     line_items.reduce(0) { |total, item| item.total + total}
   end
   
+  def display_total
+    readable_price(self.total_price)
+  end
+  
   def date_requested
     created_at.strftime('%m-%d-%Y')
   end

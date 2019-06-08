@@ -5,7 +5,11 @@ class LineItem < ApplicationRecord
   belongs_to :order
   
   def total
-    quantity * Money.from_amount(self.price).cents
+    quantity * self.price
+  end
+  
+  def display_price
+    readable_price(self.price)
   end
   
   private
