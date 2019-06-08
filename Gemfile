@@ -64,4 +64,5 @@ gem 'dotenv-rails'
 gem 'bootstrap', '>= 4.3.1'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'money'
 # Security Vulnerabilities via github
