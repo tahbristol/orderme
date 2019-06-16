@@ -16,7 +16,7 @@ feature "User can edit order" do
     sign_up('test name', 'test@email.com')
     
     create_order(1)
-    order = Order.first.update(status: :pending)
+    order = Order.first.update(status: :pending, purchaser: create(:user))
     click_on "All Orders"
     order = Order.last
     click_on "viewOrderListItem_#{order.id}" 
