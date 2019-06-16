@@ -6,7 +6,7 @@ feature "User as purchaser can acquire order" do
     create_order(1)
     visit user_path(User.first)
     click_on "All Orders"
-    find("#viewOrderListItem_#{Order.first.id}").click
+    find("#viewOrder_#{Order.first.id}").click
     
     click_on "Purchase"
   end
