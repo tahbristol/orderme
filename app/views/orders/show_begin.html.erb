@@ -20,6 +20,7 @@
                   <th class="text-center">Price/ea</th>
                   <th class="text-center">Cat No.</th>
                   <th class="text-center">Vendor</th>
+                  <th class="text-center">Purchased?</th>
                 </tr>
               </thead>
               <tbody>
@@ -30,6 +31,7 @@
                     <td class="text-center"><%= item.display_price %></td>
                     <td class="text-center"><%= item.catalogue_number %></td>
                     <td class="text-center"><%= item.vendor %></td>
+                    <% # add checkbox here %>
                   </tr>
                 <% end %>
               </tbody>
@@ -44,17 +46,5 @@
   <div class="grid-item">
 
   </div>
-  <div class="grid-item">
-    <% if @order.requestor == current_user && @order.requested? %>
-      <%= link_to "Edit Order", edit_order_path(@order), class: "btn btn-primary" %>
-    <% end %>
-  </div>
-  <div class="grid-item">
-    <% if !@order.requested? && current_user == @order.purchaser %>
-      <%= link_to "Begin Ordering", order_begin_path(@order), class: "btn btn-primary" %>
-    <% end %>
-    <% if @order.requested? && current_user.purchaser? %>
-      <%= link_to "Purchase", order_purchase_path(@order), method: :post, class: "btn btn-primary" %>
-    <% end %>
-  </div>
+
 </div>
