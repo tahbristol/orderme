@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
 
   def begin
     @order = Order.includes(:line_items).find(params[:order_id])
-    render :show
+    render :show_begin
   end
 
   private

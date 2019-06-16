@@ -4,8 +4,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		addItem();
 		initRemoveItemListener()
 	})
+	
+	$('#savePurchase').on('click', function(){
+		updateLineItemPurchaseStatus()
+	})
 });
 
+function updateLineItemPurchaseStatus(){
+	let lineItems = $('.lineItems');
+	let purchasedLineItems = lineItems.map(function(idx, item){
+		let checkbox = $('input', item);
+		
+		if ($(checkbox).is(":checked")){
+			return checkbox.attr('id').split("_")[1]
+		}
+	})
+	debugger
+}
 function addItem(){
 	let itemTableRows = $('#orderLineItems tr');
 	let lastRow = $(itemTableRows).last();
