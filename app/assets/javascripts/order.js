@@ -18,8 +18,12 @@ function updateLineItemPurchaseStatus(){
 	let purchasedLineItems = $.map(lineItems, function(item){
 		orderNumber = $(item).attr('id').split("_")[1]
 		let item_id = $('input', item).attr('id').split("_")[1];
+		let value;
 		
-		return JSON.stringify({id: item_id, purchased: $('input', item).val()})
+		if ($('input', item).is(':checked')) value = 1;
+		else value = 0;
+		
+		return JSON.stringify({id: item_id, purchased: value})
 	})
 	
 	if (purchasedLineItems.length){
