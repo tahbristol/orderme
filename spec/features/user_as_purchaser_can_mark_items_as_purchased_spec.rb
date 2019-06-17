@@ -12,11 +12,14 @@ feature 'User as purchaser can mark line items of an order as purchased' do
     find("#viewOrder_#{Order.first.id}").click
     
     click_on 'Begin Ordering'
-    find("#lineItem_#{LineItem.first.id}").check
+    find("#lineItem_#{LineItem.first.id}").click
     click_on 'Save'
     
-    line_item = Order.first.line_items.first
-    expect(line_item.purchased?).to eq true
+    Timeout.timeout(Capybara.default_max_wait_time) do # extract this out
+      loop until page.evaluate_script('jQuery.active').zero?
+    end
+    
+    expect(Order.first.line_items.first.purchased).to eq true
     
   end
 end

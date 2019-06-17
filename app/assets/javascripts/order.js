@@ -5,22 +5,33 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		initRemoveItemListener()
 	})
 	
-	$('#savePurchase').on('click', function(){
+	$('#savePurchase').on('click', function(e){
+		e.preventDefault()
 		updateLineItemPurchaseStatus()
 	})
 });
 
 function updateLineItemPurchaseStatus(){
+	let orderNumber = '';
 	let lineItems = $('.lineItems');
-	let purchasedLineItems = lineItems.map(function(idx, item){
-		let checkbox = $('input', item);
+	
+	let purchasedLineItems = $.map(lineItems, function(item){
+		orderNumber = $(item).attr('id').split("_")[1]
+		let item_id = $('input', item).attr('id').split("_")[1];
 		
-		if ($(checkbox).is(":checked")){
-			return checkbox.attr('id').split("_")[1]
-		}
+		return JSON.stringify({id: item_id, purchased: $('input', item).val()})
 	})
-	debugger
+	
+	if (purchasedLineItems.length){
+		console.log(purchasedLineItems)
+		Rails.ajax({
+			url: `update_line_items`,
+			type: 'POST',
+			data: `items=${purchasedLineItems.join('|')}`,
+		})
+	}
 }
+
 function addItem(){
 	let itemTableRows = $('#orderLineItems tr');
 	let lastRow = $(itemTableRows).last();

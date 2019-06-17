@@ -1,6 +1,6 @@
 class LineItem < ApplicationRecord
   include OrdersHelper::PriceFormatter
-  before_save :convert_price_to_cents
+  before_create :convert_price_to_cents
   
   belongs_to :order
   
@@ -15,6 +15,6 @@ class LineItem < ApplicationRecord
   private
   
   def convert_price_to_cents
-    self.price = Money.from_amount(self.price.to_d).cents
+      self.price = Money.from_amount(self.price.to_d).cents
   end
 end
