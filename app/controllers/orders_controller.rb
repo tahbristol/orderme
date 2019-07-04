@@ -60,7 +60,13 @@ class OrdersController < ApplicationController
      line_item.update(purchased: item_hash["purchased"])
     end
   end
-
+  
+  def complete
+    @order = Order.find_by(id: params[:order_id])
+    @order.update(status: :placed)
+    flash[:notice] = "This order has been marked as placed"
+    render :show_begin
+  end
   private
 
   def order_params

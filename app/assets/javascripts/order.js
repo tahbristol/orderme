@@ -8,9 +8,36 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	$('#savePurchase').on('click', function(e){
 		e.preventDefault()
 		updateLineItemPurchaseStatus()
+		showCompleteOrderButton()
 	})
+	
+	$('#completeOrder').on('click', function(e){
+		if (!checkAllItemsPurchased()){
+			$(this).hide();
+			alert('Check off all items to complete an order.')
+			return false;
+		}
+	})
+	$('#completeOrder').hide();
 });
 
+function checkAllItemsPurchased(){
+	
+	let lineItems = $('.lineItems td input[name="lineItem"]');
+	if (lineItems.length){
+		for (let item of lineItems){
+			if(!$(item).is(':checked'))
+				return false;
+		}
+	}
+	return true;
+}
+
+function showCompleteOrderButton(){
+	if (checkAllItemsPurchased()) {
+		$('#completeOrder').show();
+	}
+}
 function updateLineItemPurchaseStatus(){
 	let orderNumber = '';
 	let lineItems = $('.lineItems');

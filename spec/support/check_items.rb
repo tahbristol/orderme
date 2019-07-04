@@ -1,9 +1,8 @@
 module Features
   def check_items(num, all=true)
-    line_items = page.all('.lineItems')
+    line_items = page.all('.lineItems td:last-child')
     if all
       line_items.each do |item|
-        byebug
         item.click
       end
     else
