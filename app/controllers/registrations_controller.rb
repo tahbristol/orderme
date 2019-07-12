@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   def create
-    if params[:user][:role].to_i == 1
+    if params[:user][:role].to_i == 1 # purchaser role
       params[:user][:role] = 1
     else
       params[:user][:role] = 0
