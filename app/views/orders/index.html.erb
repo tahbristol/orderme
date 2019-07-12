@@ -28,7 +28,7 @@
 										<td class="text-center"><%= order.status %></td>
 										<td class="text-center"><%= order.line_items.count %></td>
 										<td class="text-center"><%= order.display_total %></td>
-										<td class="text-center"><%= order.requestor.name %></td>
+										<td class="text-center"><%= order.requestor.name unless order.requestor.nil? %></td>
                     <td class="text-center"><%= link_to "View", order_path(order), class: "btn btn-danger", id: "viewOrder_#{order.id}" %>
 									</tr>
 								<% end %>

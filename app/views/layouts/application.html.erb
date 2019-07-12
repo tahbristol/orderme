@@ -162,7 +162,7 @@
                           <%= link_to "All Orders", orders_path %>
                         </li>
                         <% if !current_user.picture.attached? %>
-                          <%= link_to "Add Profile Picture", user_picture_path(@user) %>
+                          <%= link_to "Add Profile Picture", user_picture_path(current_user) %>
                         <% end %>
                       </ul>
                   </li>
