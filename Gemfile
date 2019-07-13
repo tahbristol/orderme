@@ -66,4 +66,5 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'money-rails'
 gem "aws-sdk-s3", require: false
+gem 'travis'
 # Security Vulnerabilities via github
