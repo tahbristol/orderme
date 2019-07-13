@@ -22,7 +22,7 @@ require 'webdrivers'
 # require only the support files necessary.
 #
 # Chrome
-Webdrivers::Chromedriver.required_version = 2.36
+Webdrivers::Chromedriver.required_version = '2.36'
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
