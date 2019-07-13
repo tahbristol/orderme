@@ -64,6 +64,6 @@ gem 'dotenv-rails'
 gem 'bootstrap', '>= 4.3.1'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'money'
+gem 'money-rails'
 gem "aws-sdk-s3", require: false
 # Security Vulnerabilities via github
