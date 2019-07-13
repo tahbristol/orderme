@@ -2,6 +2,7 @@ language: ruby
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
+  - mkdir /home/travis/virtualenv/python2.7.12/bin
   - wget http://chromedriver.storage.googleapis.com/2.36/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python2.7.12/bin/
   - export CHROME_BIN=chromium-browser
