@@ -13,6 +13,8 @@ class User < ApplicationRecord
   
   enum role: [:requestor, :purchaser]
   
+  has_one_attached :picture
+  
   def purchased_orders
     Order.purchased.where(purchaser: self)
   end

@@ -77,7 +77,9 @@
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
-                                        <%= image_tag "icon/avatar-06.jpg", alt: current_user.name %>
+                                        <% if current_user.picture.attached? %>
+                                          <%= image_tag current_user.picture, alt: current_user.name %>
+                                        <% end %>
                                     </div>
                                     <div class="content">
                                         <a class="js-acc-btn" href="#"><%= current_user.name %></a>
@@ -85,7 +87,9 @@
                                     <div class="account-dropdown js-dropdown">
                                         <div class="info clearfix">
                                             <div class="image">
-                                              <%= image_tag "icon/avatar-06.jpg", alt: current_user.name %>
+                                              <% if current_user.picture.attached? %>
+                                                <%= image_tag current_user.picture, alt: current_user.name %>
+                                              <% end %>
                                             </div>
                                             <div class="content">
                                                 <h5 class="name">
@@ -157,6 +161,9 @@
                         <li>
                           <%= link_to "All Orders", orders_path %>
                         </li>
+                        <% if !current_user.picture.attached? %>
+                          <%= link_to "Add Profile Picture", user_picture_path(current_user) %>
+                        <% end %>
                       </ul>
                   </li>
                 </ul>

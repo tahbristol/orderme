@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :users, only: [:show] do
-
+    get 'picture', to: 'users#picture'
+    patch 'add_picture', to: 'users#add_picture'
   end
+  
   resources :orders do
     post 'purchase', to: 'orders#purchase'
     get 'begin', to: 'orders#begin'

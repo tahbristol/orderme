@@ -3,4 +3,21 @@ class UsersController < ApplicationController
     @user = User.includes(:orders).find(params[:id])
     render :show
   end
+  
+  def picture
+    @user = current_user
+  end
+  
+  def add_picture
+    @user = User.find_by(id: params[:user_id])
+    @user.picture.attach(user_params[:picture])
+    @user.save
+    redirect_to user_path(@user)
+  end
+  
+  private
+  
+  def user_params
+    params.require(:user).permit(:picture)
+  end
 end
