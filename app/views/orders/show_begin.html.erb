@@ -32,7 +32,11 @@
                     <td class="text-center"><%= item.catalogue_number %></td>
                     <td class="text-center"><%= item.vendor %></td>
                     <td class="text-center">
-                      <input type="checkbox" name="lineItem" id="lineItem_<%= item.id %>" value="1" <% if item.purchased %>checked<% end %>>
+                      <% if @order.requested? or @order.pending? %>
+                        <input type="checkbox" name="lineItem" id="lineItem_<%= item.id %>" value="1" <% if item.purchased %>checked<% end %>>
+                      <% else %>
+                        ordered
+                      <% end %>
                     </td>
                   </tr>
                 <% end %>
@@ -48,10 +52,12 @@
   <div class="grid-item">
     
   </div>
+  <% if @order.requested? or @order.pending? %>
   <div class="grid-item">
     <%= button_to "Complete Order", order_complete_path(@order), class: "btn btn-primary", id: "completeOrder" %>
   </div>  
   <div class="grid-item">
     <%= link_to "Save", "", class: "btn btn-primary", id: "savePurchase" %>
    </div>
+   <% end %>
 </div>
