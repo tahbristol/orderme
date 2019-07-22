@@ -54,4 +54,14 @@ RSpec.describe Order, type: :model do
       expect(@order.display_total).to eq "$4.00"
     end
   end
+  
+  describe "#processing_step" do
+    it "returns enum + 1 as integer" do
+      @order = Order.new
+      
+      step = @order.processing_step
+      
+      expect(step).to eq(1)
+    end
+  end
 end

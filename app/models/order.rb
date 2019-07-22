@@ -25,4 +25,8 @@ class Order < ApplicationRecord
   def date_requested
     created_at.strftime('%m-%d-%Y')
   end
+  
+  def processing_step
+    Order.statuses[self.status] + 1
+  end
 end
