@@ -50,11 +50,13 @@
     <% end %>
   </div>
   <div class="grid-item">
-    <% if !@order.requested? && current_user == @order.purchaser %>
-      <%= link_to "Begin Ordering", order_begin_path(@order), class: "btn btn-primary" %>
-    <% end %>
-    <% if @order.requested? && current_user.purchaser? %>
-      <%= link_to "Purchase", order_purchase_path(@order), method: :post, class: "btn btn-primary" %>
+    <% if !@order.placed? %>
+      <% if !@order.requested? && current_user == @order.purchaser %>
+        <%= link_to "Begin Ordering", order_begin_path(@order), class: "btn btn-primary" %>
+      <% end %>
+      <% if @order.requested? && current_user.purchaser? %>
+        <%= link_to "Purchase", order_purchase_path(@order), method: :post, class: "btn btn-primary" %>
+      <% end %>
     <% end %>
   </div>
 </div>
