@@ -50,11 +50,10 @@
     <% end %>
   </div>
   <div class="grid-item">
-    <% if !@order.placed? %>
+    <% if @order.processing_step <= 2 %>
       <% if !@order.requested? && current_user == @order.purchaser %>
         <%= link_to "Begin Ordering", order_begin_path(@order), class: "btn btn-primary" %>
-      <% end %>
-      <% if @order.requested? && current_user.purchaser? %>
+      <% elsif @order.requested? && current_user.purchaser? %>
         <%= link_to "Purchase", order_purchase_path(@order), method: :post, class: "btn btn-primary" %>
       <% end %>
     <% end %>

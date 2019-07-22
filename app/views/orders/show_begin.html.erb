@@ -52,7 +52,7 @@
   <div class="grid-item">
     
   </div>
-  <% if @order.requested? or @order.pending? %>
+  <% if @order.processing_step <= 2 %>
   <div class="grid-item">
     <%= button_to "Complete Order", order_complete_path(@order), class: "btn btn-primary", id: "completeOrder" %>
   </div>  
