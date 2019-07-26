@@ -11,8 +11,12 @@
             
             <br />
             
-            <%= f.submit "Save", class: 'btn btn-secondary btn-block' %>
+            <%= f.submit "Save", class: 'btn btn-primary btn-block' %>
           <% end %>
+          
+          <br />
+          
+          <%= link_to "Cancel", order_path(@order), class: 'btn btn-secondary btn-block' %>
         </div>
       </div>
     </div>
