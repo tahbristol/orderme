@@ -42,11 +42,13 @@
 
 <div class="grid-container orderButtons">
   <div class="grid-item">
-
-  </div>
-  <div class="grid-item">
     <% if @order.requestor == current_user && @order.requested? %>
       <%= link_to "Edit Order", edit_order_path(@order), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="grid-item">
+    <% if (@order.requested? && current_user == @order.requestor) || (@order.pending? && current_user == @order.purchaser) %>
+      <%= link_to "Add Note", new_order_note_path(@order), class: "btn btn-primary" %>
     <% end %>
   </div>
   <div class="grid-item">

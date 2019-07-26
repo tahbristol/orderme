@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'begin', to: 'orders#begin'
     post 'complete', to: 'orders#complete'
     post 'update_line_items', to: 'orders#update_line_items'
+    resources :notes
   end
   get 'purchased_queue', to: 'orders#purchased_queue'
 

@@ -8,7 +8,7 @@ class Order < ApplicationRecord
   has_many :order_users
   has_many :users, through: :order_users
   has_many :line_items, dependent: :destroy
-  has_many :notes
+  has_many :notes, as: :noteable
   
   accepts_nested_attributes_for :line_items, allow_destroy: true, reject_if: proc { |attributes| attributes['name'].blank? }
   

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_025538) do
+ActiveRecord::Schema.define(version: 2019_07_26_030817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(version: 2019_07_10_025538) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "purchased", default: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.text "content"
+    t.integer "author_id"
+    t.integer "noteable_id"
+    t.string "noteable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["noteable_id", "noteable_type"], name: "index_notes_on_noteable_id_and_noteable_type"
   end
 
   create_table "order_users", force: :cascade do |t|
