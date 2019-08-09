@@ -4,13 +4,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		addItem();
 		initRemoveItemListener()
 	})
-	
+
 	$('#saveProcessing').on('click', function(e){
 		e.preventDefault()
-		updateLineItemStatus('purchased')
-		showOrderProcessingButton()
+		let processType = $('#saveProcessing').data('process-type');
+
+		updateLineItemStatus(processType)
+		showOrderProcessingButton(processType)
 	})
-	
+
 	$('#completeOrder').on('click', function(e){
 		if (!checkAllItemsProcessed()){
 			$(this).hide();
@@ -22,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function checkAllItemsProcessed(){
-	
+
 	let lineItems = $('.lineItems td input[name="lineItem"]');
 	if (lineItems.length){
 		for (let item of lineItems){
@@ -42,24 +44,23 @@ function showOrderProcessingButton(attribute){
 function updateLineItemStatus(attribute){
 	let orderNumber = '';
 	let lineItems = $('.lineItems');
-	
+
 	let checkedLineItems = $.map(lineItems, function(item){
 		orderNumber = $(item).attr('id').split("_")[1]
 		let item_id = $('input', item).attr('id').split("_")[1];
 		let value;
-		
+
 		if ($('input', item).is(':checked')) value = 1;
 		else value = 0;
-		
+
 		return JSON.stringify({id: item_id, value: value, attribute: attribute})
 	})
-	
-	if (purchasedLineItems.length){
-		console.log(purchasedLineItems)
+
+	if (checkedLineItems.length){
 		Rails.ajax({
 			url: `update_line_items`,
 			type: 'POST',
-			data: `items=${purchasedLineItems.join('|')}`,
+			data: `items=${checkedLineItems.join('|')}`,
 		})
 	}
 }
@@ -72,14 +73,14 @@ function addItem(){
 	let newIndex = String(lastIndex + 1);
 	// the count is the enumeration the user sees in the table, initial index is 0, count is one more than index
 	let newCount = lastIndex + 2;
-	
+
 	let tr_insert = $(lastRow).html();
-	
+
 	let source = $('#itemTemplate').html();
 	let template = Handlebars.compile(source);
-	
+
 	let html = template({entryIndex: newIndex, itemFormIndex: newIndex, itemCount: newCount})
-	
+
 	$('#orderLineItems').append(html);
 }
 

@@ -51,25 +51,24 @@ class OrdersController < ApplicationController
     @order = Order.includes(:line_items).find(params[:order_id])
     render :show_begin
   end
-  
+
   def update_line_items
     items = params[:items].split("|")
     items.each do |item|
       item_hash = JSON.parse(item)
       line_item = Order.find(params[:order_id]).line_items.where(id: item_hash["id"])
-      line_item.update(purchased: item_hash["purchased"])
+      line_item.update(item_hash["attribute"].to_sym => item_hash["value"])
     end
   end
-  
+
   def complete
     @order = Order.find_by(id: params[:order_id])
     @order.update(status: :placed)
     flash[:notice] = "This order has been marked as placed"
     render :show_begin
   end
-  
+
   def invoice
-    #byebug
     items = params[:items].split("|")
     items.each do |item|
       items_hash = JSON.parse(item)
@@ -77,7 +76,7 @@ class OrdersController < ApplicationController
       line_item.update(invoiced: item_hash["invoiced"])
     end
   end
-  
+
   private
 
   def order_params
