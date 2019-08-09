@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     post 'purchase', to: 'orders#purchase'
     get 'begin', to: 'orders#begin'
     post 'complete', to: 'orders#complete'
+    post 'invoice', to: 'orders#invoice'
     post 'update_line_items', to: 'orders#update_line_items'
     resources :notes
   end

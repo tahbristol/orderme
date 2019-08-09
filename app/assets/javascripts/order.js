@@ -5,14 +5,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		initRemoveItemListener()
 	})
 	
-	$('#savePurchase').on('click', function(e){
+	$('#saveProcessing').on('click', function(e){
 		e.preventDefault()
-		updateLineItemPurchaseStatus()
-		showCompleteOrderButton()
+		updateLineItemStatus('purchased')
+		showOrderProcessingButton()
 	})
 	
 	$('#completeOrder').on('click', function(e){
-		if (!checkAllItemsPurchased()){
+		if (!checkAllItemsProcessed()){
 			$(this).hide();
 			alert('Check off all items to complete an order.')
 			return false;
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	$('#completeOrder').hide();
 });
 
-function checkAllItemsPurchased(){
+function checkAllItemsProcessed(){
 	
 	let lineItems = $('.lineItems td input[name="lineItem"]');
 	if (lineItems.length){
@@ -33,16 +33,17 @@ function checkAllItemsPurchased(){
 	return true;
 }
 
-function showCompleteOrderButton(){
-	if (checkAllItemsPurchased()) {
-		$('#completeOrder').show();
+function showOrderProcessingButton(attribute){
+	if (checkAllItemsProcessed()) {
+		$(`#${attribute}Order`).show();
 	}
 }
-function updateLineItemPurchaseStatus(){
+
+function updateLineItemStatus(attribute){
 	let orderNumber = '';
 	let lineItems = $('.lineItems');
 	
-	let purchasedLineItems = $.map(lineItems, function(item){
+	let checkedLineItems = $.map(lineItems, function(item){
 		orderNumber = $(item).attr('id').split("_")[1]
 		let item_id = $('input', item).attr('id').split("_")[1];
 		let value;
@@ -50,7 +51,7 @@ function updateLineItemPurchaseStatus(){
 		if ($('input', item).is(':checked')) value = 1;
 		else value = 0;
 		
-		return JSON.stringify({id: item_id, purchased: value})
+		return JSON.stringify({id: item_id, value: value, attribute: attribute})
 	})
 	
 	if (purchasedLineItems.length){

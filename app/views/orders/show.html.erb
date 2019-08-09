@@ -59,5 +59,9 @@
         <%= link_to "Purchase", order_purchase_path(@order), method: :post, class: "btn btn-primary" %>
       <% end %>
     <% end %>
+    
+    <% if @order.placed? && @order.requestor == current_user %>
+      <%= link_to "Invoice", order_begin_path(@order), class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>

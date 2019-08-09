@@ -56,8 +56,8 @@ class OrdersController < ApplicationController
     items = params[:items].split("|")
     items.each do |item|
       item_hash = JSON.parse(item)
-     line_item = Order.find(params[:order_id]).line_items.where(id: item_hash["id"])
-     line_item.update(purchased: item_hash["purchased"])
+      line_item = Order.find(params[:order_id]).line_items.where(id: item_hash["id"])
+      line_item.update(purchased: item_hash["purchased"])
     end
   end
   
@@ -67,6 +67,17 @@ class OrdersController < ApplicationController
     flash[:notice] = "This order has been marked as placed"
     render :show_begin
   end
+  
+  def invoice
+    #byebug
+    items = params[:items].split("|")
+    items.each do |item|
+      items_hash = JSON.parse(item)
+      line_item = Order.find(params[:order_id]).line_items.where(id: item_hash["id"])
+      line_item.update(invoiced: item_hash["invoiced"])
+    end
+  end
+  
   private
 
   def order_params

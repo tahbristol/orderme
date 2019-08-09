@@ -20,7 +20,11 @@
                   <th class="text-center">Price/ea</th>
                   <th class="text-center">Cat No.</th>
                   <th class="text-center">Vendor</th>
+                  <% if !@order.placed? %>
                   <th class="text-center">Purchased?</th>
+                  <% else %>
+                    <th class="text-center">Invoiced?</th>
+                  <% end %>
                 </tr>
               </thead>
               <tbody>
@@ -34,6 +38,8 @@
                     <td class="text-center">
                       <% if @order.requested? or @order.pending? %>
                         <input type="checkbox" name="lineItem" id="lineItem_<%= item.id %>" value="1" <% if item.purchased %>checked<% end %>>
+                      <% elsif @order.placed? && @order.requestor == current_user %>
+                        <input type="checkbox" name="lineItem" id="lineItem_<%= item.id %>" value="1" <% if item.invoiced %>checked<% end %>>
                       <% else %>
                         ordered
                       <% end %>
@@ -53,11 +59,18 @@
     
   </div>
   <% if @order.processing_step <= 2 %>
-  <div class="grid-item">
-    <%= button_to "Complete Order", order_complete_path(@order), class: "btn btn-primary", id: "completeOrder" %>
-  </div>  
-  <div class="grid-item">
-    <%= link_to "Save", "", class: "btn btn-primary", id: "savePurchase" %>
-   </div>
+    <div class="grid-item">
+      <%= button_to "Complete Order", order_complete_path(@order), class: "btn btn-primary", id: "completeOrder" %>
+    </div>  
+    <div class="grid-item">
+      <%= link_to "Save", "", class: "btn btn-primary", id: "saveProcessing" %>
+     </div>
+   <% else %>
+   <div class="grid-item">
+     <%= button_to "Complete Invoice", order_invoice_path(@order), class: "btn btn-primary", id: "invoiceOrder" %>
+   </div>  
+   <div class="grid-item">
+     <%= link_to "Save", "", class: "btn btn-primary", id: "saveProcessing" %>
+    </div>
    <% end %>
 </div>
