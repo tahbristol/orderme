@@ -69,12 +69,10 @@ class OrdersController < ApplicationController
   end
 
   def invoice
-    items = params[:items].split("|")
-    items.each do |item|
-      items_hash = JSON.parse(item)
-      line_item = Order.find(params[:order_id]).line_items.where(id: item_hash["id"])
-      line_item.update(invoiced: item_hash["invoiced"])
-    end
+    @order = Order.find_by(id: params[:order_id])
+    @order.update(status: :recieved_and_invoiced)
+    flash[:notice] = "This order has been marked as received and invoiced"
+    redirect_to order_path(@order)
   end
 
   private

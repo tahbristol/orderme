@@ -44,7 +44,7 @@ function showOrderProcessingButton(attribute){
 function updateLineItemStatus(attribute){
 	let orderNumber = '';
 	let lineItems = $('.lineItems');
-
+	
 	let checkedLineItems = $.map(lineItems, function(item){
 		orderNumber = $(item).attr('id').split("_")[1]
 		let item_id = $('input', item).attr('id').split("_")[1];

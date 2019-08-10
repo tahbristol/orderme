@@ -65,12 +65,12 @@
     <div class="grid-item">
       <%= link_to "Save Purchase", "", class: "btn btn-primary", id: "saveProcessing", data: {process_type: "purchased"} %>
      </div>
-   <% else %>
+  <% elsif @order.processing_step < 4 %>
    <div class="grid-item">
-     <%= button_to "Complete Invoice", order_invoice_path(@order), class: "btn btn-primary", id: "invoiceOrder" %>
+     <%= button_to "Complete Invoice", order_invoice_path(@order), class: "btn btn-primary", id: "invoicedOrder" %>
    </div>
    <div class="grid-item">
      <%= link_to "Save Invoice", "", class: "btn btn-primary", id: "saveProcessing", data: {process_type: "invoiced"} %>
     </div>
-   <% end %>
+  <% end %>
 </div>
