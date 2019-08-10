@@ -13,14 +13,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		showOrderProcessingButton(processType)
 	})
 
-	$('#completeOrder').on('click', function(e){
-		if (!checkAllItemsProcessed()){
-			$(this).hide();
-			alert('Check off all items to complete an order.')
-			return false;
-		}
-	})
-	$('#invoicedOrder').hide();
+	// $('#completeOrder').on('click', function(e){
+	// 	if (!checkAllItemsProcessed()){
+	// 		$(this).hide();
+	// 		alert('Check off all items to complete an order.')
+	// 		return false;
+	// 	}
+	// })
+	$('#invoicedOrder').hide(); //this and the next line need to be abstracted
 	$('#purchasedOrder').hide();
 	
 });
