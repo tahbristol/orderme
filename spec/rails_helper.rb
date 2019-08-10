@@ -36,7 +36,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox disable-gpu window-size=1680,1050])
+  options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu window-size=1680,1050])
 
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end

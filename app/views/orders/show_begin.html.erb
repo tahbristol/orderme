@@ -60,17 +60,17 @@
   </div>
   <% if @order.processing_step <= 2 %>
     <div class="grid-item">
-      <%= button_to "Complete Order", order_complete_path(@order), class: "btn btn-primary", id: "completeOrder" %>
+      <%= button_to "Complete Order", order_complete_path(@order), class: "btn btn-primary", id: "purchasedOrder" %>
     </div>
     <div class="grid-item">
-      <%= link_to "Save", "", class: "btn btn-primary", id: "saveProcessing", data: {process_type: "complete"} %>
+      <%= link_to "Save Purchase", "", class: "btn btn-primary", id: "saveProcessing", data: {process_type: "purchased"} %>
      </div>
    <% else %>
    <div class="grid-item">
      <%= button_to "Complete Invoice", order_invoice_path(@order), class: "btn btn-primary", id: "invoiceOrder" %>
    </div>
    <div class="grid-item">
-     <%= link_to "Save", "", class: "btn btn-primary", id: "saveProcessing", data: {process_type: "invoice"} %>
+     <%= link_to "Save Invoice", "", class: "btn btn-primary", id: "saveProcessing", data: {process_type: "invoiced"} %>
     </div>
    <% end %>
 </div>

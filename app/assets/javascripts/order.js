@@ -38,7 +38,7 @@ function checkAllItemsProcessed(){
 function showOrderProcessingButton(attribute){
 	if (checkAllItemsProcessed()) {
 		$(`#${attribute}Order`).show();
-	}
+	}else $(`#${attribute}Order`).hide();
 }
 
 function updateLineItemStatus(attribute){
