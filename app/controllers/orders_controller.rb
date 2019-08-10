@@ -65,7 +65,7 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:order_id])
     @order.update(status: :placed)
     flash[:notice] = "This order has been marked as placed"
-    render :show_begin
+    redirect_to order_path(@order)
   end
 
   def invoice

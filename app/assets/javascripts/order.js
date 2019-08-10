@@ -20,7 +20,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			return false;
 		}
 	})
-	$('#completeOrder').hide();
+	$('#invoicedOrder').hide();
+	$('#purchasedOrder').hide();
+	
 });
 
 function checkAllItemsProcessed(){
