@@ -1,4 +1,9 @@
 class NotesController < ApplicationController
+  
+  def index
+    @notes = Order.find_by(id: params[:order_id]).notes
+  end
+  
   def new
     @order = Order.find_by(id: params[:order_id])
     @note = @order.notes.build

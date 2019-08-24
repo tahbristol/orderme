@@ -20,6 +20,7 @@
                   <th class="text-center">Price/ea</th>
                   <th class="text-center">Cat No.</th>
                   <th class="text-center">Vendor</th>
+                  <th class="text-center">Notes</th>
                 </tr>
               </thead>
               <tbody>
@@ -30,6 +31,7 @@
                     <td class="text-center"><%= item.display_price %></td>
                     <td class="text-center"><%= item.catalogue_number %></td>
                     <td class="text-center"><%= item.vendor %></td>
+                    <td class="text-center"><%= link_to "View", order_notes_path(@order), class: "btn btn-success", id: "viewNotesForOrder_#{@order.id}" %>
                   </tr>
                 <% end %>
               </tbody>

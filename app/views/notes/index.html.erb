@@ -1,0 +1,14 @@
+<% if @notes.empty? %>
+  <h4>There are no notes</h4>
+<% else %>
+  <% @notes.each do |note| %>
+    <div id="orderNote_<%= note.id %>">
+      <p>
+        <%= note.content %>
+      </p>
+      Author: <%= note.author.name %>
+    </div>
+    <hr>
+  <% end %>
+  <%= link_to "Back to order", order_path(@notes.first.noteable) %>
+<% end %>
