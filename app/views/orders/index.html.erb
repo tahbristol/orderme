@@ -10,30 +10,7 @@
           <% end %>
 					
 					<div class="table-responsive table--no-card m-b-40">
-						<table class="table table-borderless table-striped table-earning">
-							<thead>
-								<tr>
-									<th class="text-center">Date Requested</th>
-									<th class="text-center">Status</th>
-									<th class="text-center">Number of Items</th>
-									<th class="text-center">Total Price</th>
-									<th class="text-center">Requested By</th>
-									<th class="text-center">Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<% @orders.each do |order| %>
-									<tr class="orderList">
-										<td class="text-center singleOrder"><%= order.date_requested %></td>
-										<td class="text-center"><%= order.status %></td>
-										<td class="text-center"><%= order.line_items.count %></td>
-										<td class="text-center"><%= order.display_total %></td>
-										<td class="text-center"><%= order.requestor.name unless order.requestor.nil? %></td>
-                    <td class="text-center"><%= link_to "View", order_path(order), class: "btn btn-danger", id: "viewOrder_#{order.id}" %>
-									</tr>
-								<% end %>
-							</tbody>
-						</table>
+            <%= render partial: "orders/table", locals: { orders: @orders, actions: true } %>
 					</div>
 				<% else %>
 					<h4>No orders have been requested.</h4>

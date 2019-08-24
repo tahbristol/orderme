@@ -1,0 +1,30 @@
+<table class="table table-borderless table-striped table-earning">
+  <thead>
+    <tr>
+      <th class="text-center">Date Requested</th>
+      <th class="text-center">Status</th>
+      <th class="text-center">Number of Items</th>
+      <th class="text-center">Total Price</th>
+      <th class="text-center">Requested By</th>
+      <% if actions %>
+        <th class="text-center">Actions</th>
+      <% end %>
+      <th class="text-center">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.each do |order| %>
+      <tr>
+        <td class="text-center singleOrder"><%= order.date_requested %></td>
+        <td class="text-center"><%= order.status %></td>
+        <td class="text-center"><%= order.line_items.count %></td>
+        <td class="text-center"><%= order.display_total %></td>
+        <td class="text-center"><%= order.requestor.name %></td>
+        <% if actions %>
+          <td class="text-center"><%= link_to "View", order_path(order), class: "btn btn-danger", id: "viewOrder_#{order.id}" %>
+        <% end %>
+        <td class="text-center"><%= link_to "Notes", order_notes_path(order), class: "btn btn-success", id: "viewNotesForOrder_#{order.id}" %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

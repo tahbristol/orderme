@@ -5,32 +5,7 @@
 				<% if !@user.orders.empty? %>
 					<h2 class="title-1 m-b-25">Your Requested Orders</h2>
 					<div class="table-responsive table--no-card m-b-40">
-						<table class="table table-borderless table-striped table-earning">
-							<thead>
-								<tr>
-									<th class="text-center">Date Requested</th>
-									<th class="text-center">Status</th>
-									<th class="text-center">Number of Items</th>
-									<th class="text-center">Total Price</th>
-									<th class="text-center">Requested By</th>
-                  <th class="text-center">Actions</th>
-                  <th class="text-center">Notes</th>
-								</tr>
-							</thead>
-							<tbody>
-								<% @user.orders.each do |order| %>
-									<tr>
-										<td class="text-center singleOrder"><%= order.date_requested %></td>
-										<td class="text-center"><%= order.status %></td>
-										<td class="text-center"><%= order.line_items.count %></td>
-										<td class="text-center"><%= order.display_total %></td>
-										<td class="text-center"><%= order.requestor.name %></td>
-                    <td class="text-center"><%= link_to "View", order_path(order), class: "btn btn-danger", id: "viewOrder_#{order.id}" %>
-                    <td class="text-center"><%= link_to "Notes", order_notes_path(order), class: "btn btn-success", id: "viewNotesForOrder_#{order.id}" %>
-									</tr>
-								<% end %>
-							</tbody>
-						</table>
+            <%= render partial: "orders/table", locals: { orders: @user.orders, actions: true } %>
 					</div>
 				<% else %>
 					<h4>You have no orders</h4>
