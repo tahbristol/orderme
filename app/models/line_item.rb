@@ -1,5 +1,5 @@
 class LineItem < ApplicationRecord
-  include OrdersHelper::PriceFormatter
+  include OrdersHelper
   before_create :convert_price_to_cents
   
   belongs_to :order

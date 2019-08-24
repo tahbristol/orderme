@@ -44,26 +44,14 @@
 
 <div class="grid-container orderButtons">
   <div class="grid-item">
-    <% if @order.requestor == current_user && @order.requested? %>
-      <%= link_to "Edit Order", edit_order_path(@order), class: "btn btn-primary" %>
-    <% end %>
+    <%= order_button "Edit Order", current_user, @order %>
   </div>
   <div class="grid-item">
-    <% if (@order.requested? && current_user == @order.requestor) || (@order.pending? && current_user == @order.purchaser) %>
-      <%= link_to "Add Note", new_order_note_path(@order), class: "btn btn-primary" %>
-    <% end %>
-  </div>
-  <div class="grid-item">
-    <% if @order.processing_step <= 2 %>
-      <% if !@order.requested? && current_user == @order.purchaser %>
-        <%= link_to "Begin Ordering", order_begin_path(@order), class: "btn btn-primary" %>
-      <% elsif @order.requested? && current_user.purchaser? %>
-        <%= link_to "Purchase", order_purchase_path(@order), method: :post, class: "btn btn-primary" %>
-      <% end %>
-    <% end %>
+    <%= order_button "Add Note", current_user, @order %>
     
-    <% if @order.placed? && @order.requestor == current_user %>
-      <%= link_to "Invoice", order_begin_path(@order), class: "btn btn-primary" %>
-    <% end %>
+  </div>
+  <div class="grid-item">
+    <%= order_button "Begin Ordering", current_user, @order %>
+    <%= order_button "Invoice", current_user, @order %>
   </div>
 </div>
