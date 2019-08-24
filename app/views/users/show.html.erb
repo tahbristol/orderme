@@ -2,14 +2,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
-				<% if !@user.orders.empty? %>
-					<h2 class="title-1 m-b-25">Your Requested Orders</h2>
-					<div class="table-responsive table--no-card m-b-40">
-            <%= render partial: "orders/table", locals: { orders: @user.orders, actions: true } %>
-					</div>
-				<% else %>
-					<h4>You have no orders</h4>
-				<% end %>
+        <%= user_orders current_user %>
 			</div>
 		</div>
 	</div>

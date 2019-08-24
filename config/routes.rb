@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :users, only: [:show] do
+    get 'purchased_queue', to: 'users#purchased_queue'
     get 'picture', to: 'users#picture'
     patch 'add_picture', to: 'users#add_picture'
   end

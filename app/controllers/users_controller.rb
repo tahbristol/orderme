@@ -15,6 +15,11 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
   
+  def purchased_queue
+    @orders = current_user.orders.where(purchaser: current_user)
+    render :show
+  end
+  
   private
   
   def user_params
