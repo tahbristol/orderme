@@ -138,23 +138,23 @@
                 <ul class="list-unstyled navbar__list">
                   <li class="active has-sub">
                     <h3>Hi, <%= current_user.name %></h3>
-                      <ul class="list-unstyled ">
+                      <ul class="list-unstyled " id="userNav">
                         <li>
-                          <%= link_to "Create Order", new_order_path %>
+                          <%= link_to "Create Order", new_order_path, class: 'btn btn-primary' %>
                         </li>
                         <li>
-                          <%= link_to "Your Orders", user_path(current_user) %>
+                          <%= link_to "Your Orders", user_path(current_user), class: 'btn btn-primary' %>
                         </li>
                         <% if current_user.purchaser? %>
                           <li>
-                            <%= link_to "Purchased Queue", user_purchased_queue_path(current_user) %>
+                            <%= link_to "Purchased Queue", user_purchased_queue_path(current_user), class: 'btn btn-primary' %>
                           </li>
                         <% end %>
                         <li>
-                          <%= link_to "All Orders", orders_path %>
+                          <%= link_to "All Orders", orders_path, class: 'btn btn-primary' %>
                         </li>
                         <% if !current_user.picture.attached? %>
-                          <%= link_to "Add Profile Picture", user_picture_path(current_user) %>
+                          <%= link_to "Add Profile Picture", user_picture_path(current_user), class: 'btn btn-primary' %>
                         <% end %>
                       </ul>
                   </li>

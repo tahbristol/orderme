@@ -1,3 +1,4 @@
+<h2 class="title-1 m-b-25"><%= table_title %></h2>
 <table class="table table-borderless table-striped table-earning">
   <thead>
     <tr>
@@ -23,7 +24,7 @@
         <% if actions %>
           <td class="text-center"><%= link_to "View", order_path(order), class: "btn btn-danger", id: "viewOrder_#{order.id}" %>
         <% end %>
-        <td class="text-center"><%= link_to "Notes", order_notes_path(order), class: "btn btn-success", id: "viewNotesForOrder_#{order.id}" %>
+        <td class="text-center"><%= link_to "View", order_notes_path(order), class: "btn btn-success", id: "viewNotesForOrder_#{order.id}" %>
       </tr>
     <% end %>
   </tbody>

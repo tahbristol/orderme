@@ -32,4 +32,14 @@ module OrdersHelper
      end
    end
   end
+  
+  def all_orders(orders)
+    if orders.empty?
+      table_title = "There are no orders"
+      render(partial: "orders/no_orders", locals: { table_title: table_title })
+    else
+      table_title = "All Orders"
+      render(partial: "orders/table", locals: { orders: orders, actions: true, table_title: table_title })
+    end
+  end
 end

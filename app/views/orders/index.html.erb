@@ -2,19 +2,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
-				<% if !@orders.empty? %>
-          <% if params[:action] == 'purchased_queue' %>
-            <h2 class="title-1 m-b-25">Your Purchased Orders</h2>
-          <% else %>
-            <h2 class="title-1 m-b-25">Requested Orders</h2>
-          <% end %>
-					
-					<div class="table-responsive table--no-card m-b-40">
-            <%= render partial: "orders/table", locals: { orders: @orders, actions: true } %>
-					</div>
-				<% else %>
-					<h4>No orders have been requested.</h4>
-				<% end %>
+				<%= all_orders(@orders) %>
 			</div>
 		</div>
 	</div>

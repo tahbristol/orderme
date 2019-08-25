@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     post 'update_line_items', to: 'orders#update_line_items'
     resources :notes
   end
-  get 'purchased_queue', to: 'orders#purchased_queue'
 
   # redirect to root if bad path
   #get '*path' => redirect('/')
