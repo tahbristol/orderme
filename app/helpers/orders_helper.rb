@@ -42,4 +42,8 @@ module OrdersHelper
       render(partial: "orders/table", locals: { orders: orders, actions: true, table_title: table_title })
     end
   end
+  
+  def checkboxes(order, item)
+    render(partial: "orders/checkboxes", locals: { order: order, item: item })
+  end
 end

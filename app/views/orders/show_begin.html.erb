@@ -36,13 +36,7 @@
                     <td class="text-center"><%= item.catalogue_number %></td>
                     <td class="text-center"><%= item.vendor %></td>
                     <td class="text-center">
-                      <% if @order.requested? or @order.pending? %>
-                        <input type="checkbox" name="lineItem" id="lineItem_<%= item.id %>" value="1" <% if item.purchased %>checked<% end %>>
-                      <% elsif @order.placed? && @order.requestor == current_user %>
-                        <input type="checkbox" name="lineItem" id="lineItem_<%= item.id %>" value="1" <% if item.invoiced %>checked<% end %>>
-                      <% else %>
-                        ordered
-                      <% end %>
+                      <%= checkboxes(@order, item) %>
                     </td>
                   </tr>
                 <% end %>
