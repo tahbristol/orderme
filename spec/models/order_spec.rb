@@ -40,4 +40,28 @@ RSpec.describe Order, type: :model do
       expect(@purchased_orders.first).to eq @purchased_order
     end
   end
+  
+  describe "#display_total" do
+    it "returns human readable total price" do
+      @order = Order.new
+      
+      @line_item_1 = build(:line_item)
+      @line_item_2 = build(:line_item)
+      @line_item_3 = build(:line_item)
+      @line_item_4 = build(:line_item)
+      
+      @order.line_items = [@line_item_1, @line_item_2, @line_item_3, @line_item_4]
+      expect(@order.display_total).to eq "$4.00"
+    end
+  end
+  
+  describe "#processing_step" do
+    it "returns enum + 1 as integer" do
+      @order = Order.new
+      
+      step = @order.processing_step
+      
+      expect(step).to eq(1)
+    end
+  end
 end

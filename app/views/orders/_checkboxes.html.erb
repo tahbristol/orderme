@@ -1,0 +1,7 @@
+<% if order.requested? or order.pending? %>
+  <input type="checkbox" name="lineItem" id="lineItem_<%= item.id %>" value="1" <% if item.purchased %>checked<% end %>>
+<% elsif order.placed? && order.requestor == current_user %>
+  <input type="checkbox" name="lineItem" id="lineItem_<%= item.id %>" value="1" <% if item.invoiced %>checked<% end %>>
+<% else %>
+  ordered
+<% end %>

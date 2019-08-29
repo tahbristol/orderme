@@ -77,7 +77,9 @@
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
-                                        <%= image_tag "icon/avatar-06.jpg", alt: current_user.name %>
+                                        <% if current_user.picture.attached? %>
+                                          <%= image_tag current_user.picture, alt: current_user.name %>
+                                        <% end %>
                                     </div>
                                     <div class="content">
                                         <a class="js-acc-btn" href="#"><%= current_user.name %></a>
@@ -85,7 +87,9 @@
                                     <div class="account-dropdown js-dropdown">
                                         <div class="info clearfix">
                                             <div class="image">
-                                              <%= image_tag "icon/avatar-06.jpg", alt: current_user.name %>
+                                              <% if current_user.picture.attached? %>
+                                                <%= image_tag current_user.picture, alt: current_user.name %>
+                                              <% end %>
                                             </div>
                                             <div class="content">
                                                 <h5 class="name">
@@ -98,18 +102,10 @@
                                         </div>
 
                                         <div class="account-dropdown__body">
-                                            <div class="account-dropdown__item">
+                                            <!-- <div class="account-dropdown__item">
                                                 <a href="#">
                                                     <i class="zmdi zmdi-account"></i>Account</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-settings"></i>Setting</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="account-dropdown__footer">
                                           <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
@@ -142,21 +138,24 @@
                 <ul class="list-unstyled navbar__list">
                   <li class="active has-sub">
                     <h3>Hi, <%= current_user.name %></h3>
-                      <ul class="list-unstyled ">
+                      <ul class="list-unstyled " id="userNav">
                         <li>
-                          <%= link_to "Create Order", new_order_path %>
+                          <%= link_to "Create Order", new_order_path, class: 'btn btn-primary' %>
                         </li>
                         <li>
-                          <%= link_to "Your Orders", user_path(current_user) %>
+                          <%= link_to "Your Orders", user_path(current_user), class: 'btn btn-primary' %>
                         </li>
                         <% if current_user.purchaser? %>
                           <li>
-                            <%= link_to "Purchased Queue", purchased_queue_path %>
+                            <%= link_to "Purchased Queue", user_purchased_queue_path(current_user), class: 'btn btn-primary' %>
                           </li>
                         <% end %>
                         <li>
-                          <%= link_to "All Orders", orders_path %>
+                          <%= link_to "All Orders", orders_path, class: 'btn btn-primary' %>
                         </li>
+                        <% if !current_user.picture.attached? %>
+                          <%= link_to "Add Profile Picture", user_picture_path(current_user), class: 'btn btn-primary' %>
+                        <% end %>
                       </ul>
                   </li>
                 </ul>
