@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="login-wrap">
 				<div class="login-content">
-          <%= form_for [@order,@note], class: 'form-horizontal' do |f| %>
+          <%= form_for @form_objects, class: 'form-horizontal' do |f| %>
             <div class="form-group">
               <%= f.label :note_content, class: 'form-control-lg' %>
               <%= f.text_area :content, class: 'form-control' %>

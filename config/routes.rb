@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     post 'invoice', to: 'orders#invoice'
     post 'update_line_items', to: 'orders#update_line_items'
     resources :notes
+    resources :line_items do
+      resources :notes
+    end
   end
 
   # redirect to root if bad path

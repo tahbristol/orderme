@@ -3,6 +3,7 @@ class LineItem < ApplicationRecord
   before_create :convert_price_to_cents
   
   belongs_to :order
+  has_many :notes, as: :noteable
   
   def total
     quantity * self.price

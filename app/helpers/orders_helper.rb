@@ -14,7 +14,11 @@ module OrdersHelper
      end
    when "Add Note"
      if (order.requested? && user == order.requestor) || (order.pending? && user == order.purchaser)
-       link_to("Add Note", new_order_note_path(order), class: "btn btn-primary")
+       if order.notes.empty?
+         add_view_notes_button("Add", order, new_order_note_path(order))
+       else
+         add_view_notes_button("View", order, order_notes_path(order))
+       end
      end
      
    when "Begin Ordering"
@@ -31,6 +35,11 @@ module OrdersHelper
        link_to("Invoice", order_begin_path(order), class: "btn btn-primary")
      end
    end
+  end
+  
+  def add_view_notes_button(action, order, path)
+    label = action + " Notes"
+    link_to(label, path, class: "btn btn-primary", id: "#{action.downcase}NotesForOrder_#{order.id}")
   end
   
   def all_orders(orders)
