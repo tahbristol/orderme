@@ -12,5 +12,5 @@ Rails.application.config.assets.paths << Rails.root.join('vendor')
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-Rails.application.config.assets.precompile += %w( icon/logo.png icon/avatar-06.jpg manifest.js )
+Rails.application.config.assets.precompile += %w( icon/medical-research.png icon/avatar-06.jpg manifest.js )
 

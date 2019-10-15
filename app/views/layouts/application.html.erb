@@ -54,7 +54,9 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                  <%= image_tag "icon/logo.png", alt: 'Cool Admin' %>
+                  Order
+                  <%= image_tag "icon/medical-research.png", alt: 'Order Me' %>
+                  Me
                 </a>
             </div>
         </aside>
@@ -129,7 +131,9 @@
           <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
               <a href="#">
-                <%= image_tag "icon/logo.png", alt: 'Cool Admin' %>
+                Order 
+                <%= image_tag "icon/medical-research.png", alt: 'OrderMe' %>
+                Me
               </a>
             </div>
 
@@ -175,9 +179,12 @@
         </div>
 
         <%= yield %>
+        
       </div>
     <% end %>
-
+    <!-- <div id="creditContainer">
+      <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
+    </div> -->
     <%= javascript_include_tag 'main.js' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
     <script id="itemTemplate" type="text/x-handlebars-template">

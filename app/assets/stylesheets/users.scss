@@ -2,3 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.login-logo img, .logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.logo a {
+  text-decoration: none;
+  font-size: 24px;
+  color: #293D7C;
+}
+
+.login-logo {
+  text-decoration: none;
+  font-size: 24px;
+  color: #293D7C;
+}
