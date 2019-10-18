@@ -2,23 +2,5 @@
 [![Build Status](https://travis-ci.org/tahbristol/orderme.svg?branch=master)](https://travis-ci.org/tahbristol/orderme)
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+Trello Board: https://trello.com/b/qhE7JWgu/orderme<br>
+Live App: https://blooming-springs-78793.herokuapp.com
