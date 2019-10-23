@@ -3,20 +3,20 @@
 		<div class="container">
 			<div class="login-wrap">
 				<div class="login-content">
-					
+
           <div class="login-logo">
             Order
 						<%= link_to image_tag("icon/medical-research.png", border: 0), id: "iconImage", alt: "OrderMe" %>
             Me
 					</div>
-					
+
           <div class="login-form">
-            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+						<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
 
               <div class="field">
                 <%= f.label :email %><br/>
-                <%= f.email_field :email, class: "au-input au-input--full" %>
+                <%= f.email_field :email, class: "au-input au-input--full", value: @guest_email %>
               </div>
 
               <div class="field">
@@ -25,14 +25,14 @@
                   <em>(<%= @minimum_password_length %>
                     characters minimum)</em>
                 <% end %><br/>
-                <%= f.password_field :password, class: "au-input au-input--full" %>
+                <%= f.password_field :password, class: "au-input au-input--full", value: @guest_password %>
               </div>
               <br />
               <div class="actions">
                 <%= f.submit "Sign in", class: "au-btn au-btn--block au-btn--green m-b-20" %>
               </div>
             <% end %>
-            
+
             <div class="register-link">
               <p>
                 Don't you have account?

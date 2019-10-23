@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  devise_for :users, :controllers => {:registrations => "registrations", :sessions => 'users/sessions'}
 
   root to: 'home#index'
 
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get 'picture', to: 'users#picture'
     patch 'add_picture', to: 'users#add_picture'
   end
-  
+
   resources :orders do
     post 'purchase', to: 'orders#purchase'
     get 'begin', to: 'orders#begin'
