@@ -69,3 +69,4 @@ gem 'money-rails'
 gem "aws-sdk-s3", require: false
 gem 'travis'
 # Security Vulnerabilities via github
+gem "rubyzip", ">= 1.3.0"
