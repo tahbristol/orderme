@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def purchased_queue
-    @orders = current_user.orders.where(purchaser: current_user)
+    @orders = current_user.purchased_orders
     render :show
   end
 
