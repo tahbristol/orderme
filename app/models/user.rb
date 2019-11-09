@@ -17,4 +17,8 @@ class User < ApplicationRecord
   def purchased_orders
     Order.purchased.where(purchaser: self)
   end
+
+  def attach_picture(picture)
+    self.picture.attach(picture)
+  end
 end
