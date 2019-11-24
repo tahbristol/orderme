@@ -3,16 +3,9 @@
 		<div class="container">
 			<div class="login-wrap">
 				<div class="login-content">
-          <%= form_for @form_objects, class: 'form-horizontal' do |f| %>
-            <div class="form-group">
-              <%= f.label :note_content, class: 'form-control-lg' %>
-              <%= f.text_area :content, class: 'form-control' %>
-            </div>
-              <br />
-            <%= f.submit "Save", class: 'btn btn-primary btn-block' %>
-          <% end %>
+          <%= render partial: "form", locals: {note: @note} %>
           <br />
-          <%= link_to "Cancel", order_path(@order), class: 'btn btn-secondary btn-block' %>
+          <%= link_to "Cancel", orders_path, class: 'btn btn-secondary btn-block' %>
         </div>
       </div>
     </div>

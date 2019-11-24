@@ -10,5 +10,20 @@
     </div>
     <hr>
   <% end %>
-  <%= link_to "Back to order", order_path(@order) %>
+
+  <div class="page-wrapper">
+  	<div class="page-content--bge5">
+  		<div class="container">
+  			<div class="login-wrap">
+          <h3>Add a Note</h3>
+  				<div class="login-content">
+            <%= render partial: "form", locals: {note: Note.new} %>
+            <br />
+            <%= link_to "Cancel", orders_path, class: 'btn btn-secondary btn-block' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <% end %>

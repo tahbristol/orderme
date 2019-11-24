@@ -1,39 +1,29 @@
 class NotesController < ApplicationController
-  
+  before_action :set_noteable
+
   def index
-    @noteable, @order = noteable
     @notes = @noteable.notes
   end
-  
+
   def new
-    @noteable, @order = noteable
-    @note = @noteable.notes.build
-    
-    if @noteable == @order
-      @form_objects = [@noteable, @note]
-    else
-      @form_objects = [@order, @noteable, @note]
-    end
+    @note = Note.new
   end
-  
+
   def create
-    @noteable, @order = noteable
-    @note = @noteable.notes.create(note_params.merge(author: current_user))
-    redirect_to order_path(@order)
+    @noteable.notes.create(note_params.merge(author: current_user))
+    @notes = @noteable.notes
+    flash[:notice] = "Note successfully created."
+    render :index
   end
-  
+
   private
-  
+
   def note_params
-    params.require(:note).permit(:content)
+    params.require(:note).permit(:content, :noteable_type, :noteable_id)
   end
-  
-  def noteable
-    if params[:line_item_id]
-      [LineItem.find_by(id: params[:line_item_id]), Order.find_by(id: params[:order_id])]
-    else
-      [Order.find_by(id: params[:order_id]), Order.find_by(id: params[:order_id])]
-    end
+
+  def set_noteable
+    noteable_class = Object.const_get params[:note][:noteable_type]
+    @noteable = noteable_class.find_by(id: params[:note][:noteable_id])
   end
-  
 end

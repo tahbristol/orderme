@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-
+  include ItemsHelper
+  
   def index
     @orders = Order.all
   end
@@ -22,7 +23,9 @@ class OrdersController < ApplicationController
   end
 
   def update
-    current_user.orders.update(order_params)
+    @order = Order.find_by(id: params[:order][:noteable_id])
+    @order.update(order_params)
+
     redirect_to order_path(@order)
   end
 
@@ -39,7 +42,7 @@ class OrdersController < ApplicationController
     else
       flash[:notice] = "This order already has a purchaser"
     end
-    redirect_to @order
+    redirect_to "/orders"
   end
 
   def purchased_queue
@@ -54,11 +57,7 @@ class OrdersController < ApplicationController
 
   def update_line_items
     items = params[:items].split("|")
-    items.each do |item|
-      item_hash = JSON.parse(item)
-      line_item = Order.find(params[:order_id]).line_items.where(id: item_hash["id"])
-      line_item.update(item_hash["attribute"].to_sym => item_hash["value"])
-    end
+    update_for_each_item(items, params[:order_id])
   end
 
   def complete
@@ -80,7 +79,8 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(
       :requestor_id,
-      line_items_attributes: [:id, :name, :quantity, :catalogue_number, :price, :vendor, :_destroy]
+      line_items_attributes: [:id, :name, :quantity, :catalogue_number, :price, :vendor, :_destroy],
+      notes_attributes: [:content]
     )
   end
 end
