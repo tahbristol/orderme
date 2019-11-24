@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-
+  include ItemsHelper
+  
   def index
     @orders = Order.all
   end
@@ -56,11 +57,7 @@ class OrdersController < ApplicationController
 
   def update_line_items
     items = params[:items].split("|")
-    items.each do |item|
-      item_hash = JSON.parse(item)
-      line_item = Order.find(params[:order_id]).line_items.where(id: item_hash["id"])
-      line_item.update(item_hash["attribute"].to_sym => item_hash["value"])
-    end
+    update_for_each_item(items, params[:order_id])
   end
 
   def complete
