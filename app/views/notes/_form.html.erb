@@ -1,0 +1,10 @@
+<%= form_for note, class: 'form-horizontal' do |f| %>
+  <%= f.hidden_field :noteable_id, value: @noteable.id %>
+  <%= f.hidden_field :noteable_type, value: @noteable.class %>
+
+    <%= f.label :content, class: 'form-control-lg' %>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+    <br />
+  <%= f.submit "Save", class: 'btn btn-primary btn-block' %>
+<% end %>

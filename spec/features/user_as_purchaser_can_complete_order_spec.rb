@@ -6,18 +6,21 @@ feature "User can complete purchasing of order", js: true do
     create_other_users_order()
 
     click_on 'All Orders'
-    
+
     view_order
-    
+
     click_on 'Purchase'
+
+    id = Order.last.id
+    find("#viewOrder_#{id}").click
     
     click_on 'Begin Ordering'
 
     check_items(0)
-    
+
     click_on 'Save'
     click_on 'Complete Order'
-    
+
     order = Order.last
     expect(order.status).to eq('placed')
   end

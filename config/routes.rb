@@ -16,11 +16,13 @@ Rails.application.routes.draw do
     post 'invoice', to: 'orders#invoice'
     post 'update_line_items', to: 'orders#update_line_items'
     resources :notes
-    resources :line_items do
-      resources :notes
-    end
+    resources :line_items
   end
 
+  resources :line_items do
+    resources :notes
+  end
+  resources :notes
   # redirect to root if bad path
   #get '*path' => redirect('/')
 end

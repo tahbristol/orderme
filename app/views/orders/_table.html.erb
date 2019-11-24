@@ -24,7 +24,7 @@
         <% if actions %>
           <td class="text-center"><%= link_to "View", order_path(order), class: "btn btn-danger", id: "viewOrder_#{order.id}" %></td>
         <% end %>
-        <td class="text-center"><%= link_to "View", order_notes_path(order), class: "btn btn-success", id: "viewNotesForOrder_#{order.id}" %></td>
+        <td class="text-center"><%= link_to "View", notes_path(note: {noteable_type: order.class, noteable_id: order.id}), class: "btn btn-success", id: "viewNotesForOrder_#{order.id}" %></td>
       </tr>
     <% end %>
   </tbody>

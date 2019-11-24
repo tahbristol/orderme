@@ -22,7 +22,9 @@ class OrdersController < ApplicationController
   end
 
   def update
-    current_user.orders.update(order_params)
+    @order = Order.find_by(id: params[:order][:noteable_id])
+    @order.update(order_params)
+
     redirect_to order_path(@order)
   end
 
@@ -39,7 +41,7 @@ class OrdersController < ApplicationController
     else
       flash[:notice] = "This order already has a purchaser"
     end
-    redirect_to @order
+    redirect_to "/orders"
   end
 
   def purchased_queue
@@ -80,7 +82,8 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(
       :requestor_id,
-      line_items_attributes: [:id, :name, :quantity, :catalogue_number, :price, :vendor, :_destroy]
+      line_items_attributes: [:id, :name, :quantity, :catalogue_number, :price, :vendor, :_destroy],
+      notes_attributes: [:content]
     )
   end
 end
