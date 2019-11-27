@@ -30,4 +30,13 @@ class Order < ApplicationRecord
   def processing_step
     Order.statuses[self.status] + 1
   end
+
+  def update_on_purchase(user_id)
+    if requested?
+      update(purchaser_id: user_id, status: :pending)
+      "This order has been moved to your purchasing queue"
+    else
+      "This order already has a purchaser"
+    end
+  end
 end

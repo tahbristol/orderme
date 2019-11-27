@@ -7,34 +7,35 @@ module OrdersHelper
 
   def order_button(label, user, order)
 
-   case label
-   when "Edit Order"
-     if order.requestor == user && order.requested?
-       link_to("Edit Order", edit_order_path(order), class: "btn btn-primary")
-     end
-   when "Add Note"
-     if (order.requested? && user == order.requestor) || (order.pending? && user == order.purchaser)
-       if order.notes.empty?
-         add_view_notes_button("Add", order, new_note_path(note: {noteable_type: order.class, noteable_id: order.id}))
-       else
-         add_view_notes_button("View", order, notes_path(note: {noteable_type: order.class, noteable_id: order.id}))
-       end
-     end
+    case label
+      when "Edit Order"
+        if order.requestor == user && order.requested?
+         link_to("Edit Order", edit_order_path(order), class: "btn btn-primary")
+        end
 
-   when "Begin Ordering"
-     if order.processing_step <= 2
-       if !order.requested? && user == order.purchaser
-         link_to("Begin Ordering", order_begin_path(order), class: "btn btn-primary")
-       elsif order.requested? && user.purchaser?
-         link_to("Purchase", order_purchase_path(order), method: :post, class: "btn btn-primary")
-       end
-     end
+      when "Add Note"
+        if (order.requested? && user == order.requestor) || (order.pending? && user == order.purchaser)
+          if order.notes.empty?
+            add_view_notes_button("Add", order, new_note_path(note: {noteable_type: order.class, noteable_id: order.id}))
+          else
+            add_view_notes_button("View", order, notes_path(note: {noteable_type: order.class, noteable_id: order.id}))
+          end
+        end
 
-   when "Invoice"
-     if order.placed? && order.requestor == user
-       link_to("Invoice", order_begin_path(order), class: "btn btn-primary")
-     end
-   end
+      when "Begin Ordering"
+        if order.processing_step <= 2
+          if !order.requested? && user == order.purchaser
+            link_to("Begin Ordering", order_begin_path(order), class: "btn btn-primary")
+          elsif order.requested? && user.purchaser?
+            link_to("Purchase", order_purchase_path(order), method: :post, class: "btn btn-primary")
+          end
+        end
+
+      when "Invoice"
+        if order.placed? && order.requestor == user
+          link_to("Invoice", order_begin_path(order), class: "btn btn-primary")
+        end
+    end
   end
 
   def add_view_notes_button(action, order, path)

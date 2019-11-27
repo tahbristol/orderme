@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   include ItemsHelper
-  
+
   def index
     @orders = Order.all
   end
@@ -36,12 +36,7 @@ class OrdersController < ApplicationController
 
   def purchase
     @order = Order.find(params[:order_id])
-    if @order.requested?
-      @order.update(purchaser_id: current_user.id, status: :pending)
-      flash[:notice] = "This order has been moved to your purchasing queue"
-    else
-      flash[:notice] = "This order already has a purchaser"
-    end
+    flash[:notice] = @order.update_on_purchase(current_user.id)
     redirect_to "/orders"
   end
 
