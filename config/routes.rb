@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     get 'purchased_queue', to: 'users#purchased_queue'
+    get 'batch_orders', to: 'users#batch_orders'
     get 'picture', to: 'users#picture'
     patch 'add_picture', to: 'users#add_picture'
   end

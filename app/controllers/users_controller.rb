@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.includes(:orders).find(params[:id])
+    @orders = @user.orders
     render :show
   end
 
@@ -19,6 +20,10 @@ class UsersController < ApplicationController
     render :show
   end
 
+  def batch_orders
+    @orders = Order.where(status: :requested);
+    render :show
+  end
   private
 
   def user_params

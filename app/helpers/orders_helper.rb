@@ -53,7 +53,7 @@ module OrdersHelper
     end
   end
 
-  def checkboxes(order, item)
-    render(partial: "orders/checkboxes", locals: { order: order, item: item })
+  def checkboxes(order, item = nil, batch = false)
+    render(partial: "orders/checkboxes", locals: { order: order, item: item, batch: batch})
   end
 end
