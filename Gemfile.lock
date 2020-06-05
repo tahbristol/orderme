@@ -182,7 +182,7 @@ GEM
     orm_adapter (0.5.0)
     pg (1.1.4)
     popper_js (1.14.5)
-    puma (3.12.1)
+    puma (3.12.6)
     pusher-client (0.6.2)
       json
       websocket (~> 1.0)
@@ -331,7 +331,7 @@ DEPENDENCIES
   mini_racer
   money-rails
   pg (>= 1.1.4, < 2.0)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.2)
   rake
   rspec-rails
